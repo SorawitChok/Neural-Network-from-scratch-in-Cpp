@@ -1,1 +1,1 @@
-# Neural-Network-from-scratch-in-C
+# Neural Network from scratch in C++
