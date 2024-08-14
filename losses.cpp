@@ -9,7 +9,7 @@ double BCELoss(vector<int> true_label, vector<double> pred_prob){
         sum += true_label[i]*log(pred_prob[i]) + (1-true_label[i])*log((1-pred_prob[i]));
     }
     int size = true_label.size();
-    double loss = -(1.0/size)*sum; 
+    double loss = -(1.0 / size) * sum;
     return loss;
 }
 
