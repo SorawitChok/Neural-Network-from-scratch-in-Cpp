@@ -1,8 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "activation.cpp"
+#include "layer.cpp"
 
-using namespace std;
 int main()
 {
     return 0;

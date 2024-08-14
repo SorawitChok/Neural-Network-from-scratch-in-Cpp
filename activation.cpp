@@ -1,7 +1,6 @@
 #include <cmath>
 #include <vector>
 
-using namespace std;
 double sigmoid(double x)
 {
     return 1 / (1 + exp(-x));
@@ -12,18 +11,18 @@ double sigmoidDerivative(double x)
     return exp(x) / pow((exp(x) + 1), 2);
 }
 
-vector<double> sigmoid(const vector<double> &x)
+std::vector<double> vectSigmoid(const std::vector<double> &x)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(sigmoid(i));
     return result;
 }
 
-vector<double> sigmoidDerivative(const vector<double> &x)
+std::vector<double> vectSigmoidDerivative(const std::vector<double> &x)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(sigmoidDerivative(i));
@@ -46,18 +45,18 @@ double reluDerivative(double x)
         return 0;
 }
 
-vector<double> relu(const vector<double> &x)
+std::vector<double> vectRelu(const std::vector<double> &x)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(relu(i));
     return result;
 }
 
-vector<double> reluDerivative(const vector<double> &x)
+std::vector<double> vectReluDerivative(const std::vector<double> &x)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(reluDerivative(i));
@@ -80,18 +79,18 @@ double leakyReluDerivative(double x, double alpha = 0.01)
         return alpha;
 }
 
-vector<double> leakyRelu(const vector<double> &x, double alpha = 0.01)
+std::vector<double> vectLeakyRelu(const std::vector<double> &x, double alpha = 0.01)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(leakyRelu(i, alpha));
     return result;
 }
 
-vector<double> leakyReluDerivative(const vector<double> &x, double alpha = 0.01)
+std::vector<double> vectLeakyReluDerivative(const std::vector<double> &x, double alpha = 0.01)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(leakyReluDerivative(i, alpha));
@@ -108,27 +107,27 @@ double tanhDerivative(double x)
     return 1 - pow(tanh(x), 2);
 }
 
-vector<double> tanh(const vector<double> &x)
+std::vector<double> vectTanh(const std::vector<double> &x)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(tanh(i));
     return result;
 }
 
-vector<double> tanhDerivative(const vector<double> &x)
+std::vector<double> vectTanhDerivative(const std::vector<double> &x)
 {
-    vector<double> result;
+    std::vector<double> result;
     result.reserve(x.size());
     for (double i : x)
         result.push_back(tanhDerivative(i));
     return result;
 }
 
-// vector<double> softmax(vector<double> z)
+// std::vector<double> softmax(std::vector<double> z)
 // {
-//     vector<double> result;
+//     std::vector<double> result;
 //     double sum = 0.0;
 //     for (double i : z)
 //         sum += exp(i);
