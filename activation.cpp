@@ -12,6 +12,24 @@ double sigmoidDerivative(double x)
     return exp(x) / pow((exp(x) + 1), 2);
 }
 
+vector<double> sigmoid(const vector<double> &x)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(sigmoid(i));
+    return result;
+}
+
+vector<double> sigmoidDerivative(const vector<double> &x)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(sigmoidDerivative(i));
+    return result;
+}
+
 double relu(double x)
 {
     if (x > 0)
@@ -26,6 +44,24 @@ double reluDerivative(double x)
         return 1;
     else
         return 0;
+}
+
+vector<double> relu(const vector<double> &x)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(relu(i));
+    return result;
+}
+
+vector<double> reluDerivative(const vector<double> &x)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(reluDerivative(i));
+    return result;
 }
 
 double leakyRelu(double x, double alpha = 0.01)
@@ -44,6 +80,24 @@ double leakyReluDerivative(double x, double alpha = 0.01)
         return alpha;
 }
 
+vector<double> leakyRelu(const vector<double> &x, double alpha = 0.01)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(leakyRelu(i, alpha));
+    return result;
+}
+
+vector<double> leakyReluDerivative(const vector<double> &x, double alpha = 0.01)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(leakyReluDerivative(i, alpha));
+    return result;
+}
+
 double tanh(double x)
 {
     return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
@@ -52,6 +106,24 @@ double tanh(double x)
 double tanhDerivative(double x)
 {
     return 1 - pow(tanh(x), 2);
+}
+
+vector<double> tanh(const vector<double> &x)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(tanh(i));
+    return result;
+}
+
+vector<double> tanhDerivative(const vector<double> &x)
+{
+    vector<double> result;
+    result.reserve(x.size());
+    for (double i : x)
+        result.push_back(tanhDerivative(i));
+    return result;
 }
 
 // vector<double> softmax(vector<double> z)
