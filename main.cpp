@@ -4,7 +4,6 @@
 #include "activation.cpp"
 #include "losses.cpp"
 
-
 int main()
 {
     vector<double> true_lab = {3, -0.5, 2, 7};
