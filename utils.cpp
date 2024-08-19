@@ -34,3 +34,13 @@ std::vector<double> biasInitailizer(int size)
     }
     return bias;
 }
+
+double dotProduct(std::vector<double> v1, std::vector<double> v2)
+{
+    double result = 0;
+    for (int i = 0; i<v1.size(); i++)
+    {
+        result += v1[i]*v2[i];
+    }
+    return result;
+}
