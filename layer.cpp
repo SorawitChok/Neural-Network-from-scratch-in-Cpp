@@ -12,7 +12,7 @@ public:
         output = vectSigmoid(input);
         return output;
     }
-    std::vector<double> backward(std::vector<double> error)
+    std::vector<double> backward(std::vector<double> error, double learning_rate)
     {
         std::vector<double> derivative = vectSigmoidDerivative(input);
         std::vector<double> grad_input;
@@ -36,7 +36,7 @@ public:
         output = vectRelu(input);
         return output;
     }
-    std::vector<double> backward(std::vector<double> error)
+    std::vector<double> backward(std::vector<double> error, double learning_rate)
     {
         std::vector<double> derivative = vectReluDerivative(input);
         std::vector<double> grad_input;
@@ -61,7 +61,7 @@ public:
         output = vectLeakyRelu(input, alpha);
         return output;
     }
-    std::vector<double> backward(std::vector<double> error)
+    std::vector<double> backward(std::vector<double> error, double learning_rate)
     {
         std::vector<double> derivative = vectLeakyReluDerivative(input, alpha);
         std::vector<double> grad_input;
@@ -85,7 +85,7 @@ public:
         output = vectTanh(input);
         return output;
     }
-    std::vector<double> backward(std::vector<double> error)
+    std::vector<double> backward(std::vector<double> error, double learning_rate)
     {
         std::vector<double> derivative = vectTanhDerivative(input);
         std::vector<double> grad_input;
