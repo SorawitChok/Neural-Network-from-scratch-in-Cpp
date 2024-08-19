@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "layer.cpp"
-#include "activation.cpp"
 #include "losses.cpp"
 
 int main()
