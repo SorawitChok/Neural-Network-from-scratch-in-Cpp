@@ -106,10 +106,11 @@ public:
     std::vector<double> output;
     int input_neuron;
     int output_neuron;
-    std::vector<vector<double>> weights;
+    std::vector<std::vector<double>> weights;
     std::vector<double> bias;
 
-    Linear(int num_in, int num_out){
+    Linear(int num_in, int num_out)
+    {
         input_neuron = num_in;
         output_neuron = num_out;
         weights = uniformWeightInitializer(num_out, num_in);
@@ -119,12 +120,11 @@ public:
     std::vector<double> forward(const std::vector<double> &input_data)
     {
         input = input_data;
-        for (int i = 0; i<output_neuron; i++)
+        for (int i = 0; i < output_neuron; i++)
         {
             output[i] = dotProduct(weights[0], input);
-
         }
-        
+
         return output;
     }
     std::vector<double> backward(std::vector<double> error, double learning_rate)
