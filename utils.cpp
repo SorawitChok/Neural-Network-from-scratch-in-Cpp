@@ -38,9 +38,25 @@ std::vector<double> biasInitailizer(int size)
 double dotProduct(std::vector<double> v1, std::vector<double> v2)
 {
     double result = 0;
-    for (int i = 0; i<v1.size(); i++)
+    for (int i = 0; i < v1.size(); i++)
     {
-        result += v1[i]*v2[i];
+        result += v1[i] * v2[i];
     }
     return result;
+}
+
+std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> &m)
+{
+    std::vector<std::vector<double>> trans_vec(m[0].size(), std::vector<double>());
+
+    for (int i = 0; i < m.size(); i++)
+    {
+        for (int j = 0; j < m[i].size(); j++)
+        {
+            if (trans_vec[j].size() != m.size())
+                trans_vec[j].resize(m.size());
+            trans_vec[j][i] = m[i][j];
+        }
+    }
+    return trans_vec;
 }
