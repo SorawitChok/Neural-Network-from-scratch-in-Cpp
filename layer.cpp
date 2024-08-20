@@ -106,7 +106,7 @@ public:
     std::vector<double> output;
     int input_neuron;
     int output_neuron;
-    std::vector<vector<double>> weights;
+    std::vector<std::vector<double>> weights;
     std::vector<double> bias;
 
     Linear(int num_in, int num_out){

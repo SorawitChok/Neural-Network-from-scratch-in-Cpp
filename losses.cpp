@@ -1,9 +1,8 @@
 #include <vector>
 #include <math.h>
 #include <cmath>
-using namespace std;
 
-double BCELoss(vector<int> true_label, vector<double> pred_prob)
+double BCELoss(std::vector<int> true_label, std::vector<double> pred_prob)
 {
     double sum = 0;
     for (int i = 0; i < pred_prob.size(); i++)
@@ -15,7 +14,13 @@ double BCELoss(vector<int> true_label, vector<double> pred_prob)
     return loss;
 }
 
-double MSELoss(vector<double> true_label, vector<double> pred)
+double BCELossDerivative(int true_label, double pred_prob)
+{
+    double dev = (pred_prob - true_label)/((pred_prob)*(1-pred_prob));
+    return dev;
+}
+
+double MSELoss(std::vector<double> true_label, std::vector<double> pred)
 {
     double sum = 0;
     for (int i = 0; i < true_label.size(); i++)
@@ -25,4 +30,10 @@ double MSELoss(vector<double> true_label, vector<double> pred)
     int size = true_label.size();
     double loss = (1.0 / size) * sum;
     return loss;
+}
+
+double MSELossDerivative(double true_label, double pred)
+{
+    double dev = 2*(true_label-pred)*-1;
+    return dev;
 }
