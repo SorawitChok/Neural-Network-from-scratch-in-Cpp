@@ -2,11 +2,16 @@
 #include "activation.cpp"
 #include "utils.cpp"
 
-class Sigmoid
+class Layer
 {
 public:
     std::vector<double> input;
     std::vector<double> output;
+};
+
+class Sigmoid : public Layer
+{
+public:
     std::vector<double> forward(const std::vector<double> &input_data)
     {
         input = input_data;
@@ -26,11 +31,9 @@ public:
     }
 };
 
-class Relu
+class Relu : public Layer
 {
 public:
-    std::vector<double> input;
-    std::vector<double> output;
     std::vector<double> forward(const std::vector<double> &input_data)
     {
         input = input_data;
@@ -50,11 +53,9 @@ public:
     }
 };
 
-class LeakyRelu
+class LeakyRelu : public Layer
 {
 public:
-    std::vector<double> input;
-    std::vector<double> output;
     double alpha = 0.01;
     std::vector<double> forward(const std::vector<double> &input_data)
     {
@@ -75,11 +76,9 @@ public:
     }
 };
 
-class Tanh
+class Tanh : public Layer
 {
 public:
-    std::vector<double> input;
-    std::vector<double> output;
     std::vector<double> forward(const std::vector<double> &input_data)
     {
         input = input_data;
@@ -99,11 +98,9 @@ public:
     }
 };
 
-class Linear
+class Linear : public Layer
 {
 public:
-    std::vector<double> input;
-    std::vector<double> output;
     int input_neuron;
     int output_neuron;
     std::vector<std::vector<double>> weights;
@@ -122,7 +119,7 @@ public:
         input = input_data;
         for (int i = 0; i < output_neuron; i++)
         {
-            output[i] = dotProduct(weights[0], input);
+            output[i] = dotProduct(weights[i], input);
         }
 
         return output;
