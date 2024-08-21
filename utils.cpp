@@ -1,5 +1,7 @@
 #include <vector>
 #include <random>
+#include <functional>
+#include <algorithm>
 
 std::vector<std::vector<double>> uniformWeightInitializer(int rows, int cols)
 {
@@ -35,7 +37,7 @@ std::vector<double> biasInitailizer(int size)
     return bias;
 }
 
-double dotProduct(std::vector<double> v1, std::vector<double> v2)
+double dotProduct(std::vector<double> &v1, std::vector<double> &v2)
 {
     double result = 0;
     for (int i = 0; i < v1.size(); i++)
@@ -59,4 +61,12 @@ std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> &m)
         }
     }
     return trans_vec;
+}
+
+std::vector<double> subtract(std::vector<double> &v1, std::vector<double> &v2)
+{
+    std::vector<double> out;
+    std::transform(v1.begin(), v1.end(), v2.begin(), std::back_inserter(out), std::minus<double>());
+
+    return out;
 }
