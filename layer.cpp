@@ -119,20 +119,38 @@ public:
         input = input_data;
         for (int i = 0; i < output_neuron; i++)
         {
-            output[i] = dotProduct(weights[i], input);
+            output[i] = dotProduct(weights[i], input) + bias[i];
         }
 
         return output;
     }
     std::vector<double> backward(std::vector<double> error, double learning_rate)
     {
-        std::vector<double> derivative = vectTanhDerivative(input);
-        std::vector<double> grad_input;
-        grad_input.reserve(derivative.size());
-        for (int i = 0; i < derivative.size(); ++i)
+        std::vector<double> input_error;  // dE/dX
+        std::vector<double> weight_error; // dE/dW
+        std::vector<double> bias_error;   // dE/dB
+
+        std::vector<std::vector<double>> weight_transpose = transpose(weights);
+        bias_error = error;
+
+        for (int i = 0; i < weight_transpose.size(); i++)
         {
-            grad_input.push_back(derivative[i] * error[i]);
+            input_error[i] = dotProduct(weight_transpose[i], error);
         }
-        return grad_input;
+
+        for (int j = 0; j < error.size(); j++)
+        {
+            for (int i = 0; i < input.size(); i++)
+            {
+                weight_error[j][i] = error[j] * input[i];
+            }
+        }
+
+        bias = subtract(bias, learning_rate * bias_error);
+        for (int i; weight_error.size(); i++)
+        {
+            weights[i] = subtract(weights[i], learning_rate * weight_error[i]);
+        }
+        return input_error;
     }
 };
