@@ -119,7 +119,7 @@ public:
         input = input_data;
         for (int i = 0; i < output_neuron; i++)
         {
-            output[i] = dotProduct(weights[i], input) + bias[i];
+            output.push_back(dotProduct(weights[i], input) + bias[i]);
         }
 
         return output;
