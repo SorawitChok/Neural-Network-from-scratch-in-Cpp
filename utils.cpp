@@ -2,11 +2,12 @@
 #include <random>
 #include <functional>
 #include <algorithm>
+#include <chrono>
 
 std::vector<std::vector<double>> uniformWeightInitializer(int rows, int cols)
 {
     std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(rd() ^ std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_real_distribution<> dis(-1.0, 1.0);
 
     std::vector<std::vector<double>> weights(rows, std::vector<double>(cols));
@@ -25,7 +26,7 @@ std::vector<std::vector<double>> uniformWeightInitializer(int rows, int cols)
 std::vector<double> biasInitailizer(int size)
 {
     std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(rd() ^ std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_real_distribution<> dis(-1.0, 1.0);
 
     std::vector<double> bias(size);
