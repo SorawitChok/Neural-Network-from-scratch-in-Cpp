@@ -71,3 +71,9 @@ std::vector<double> subtract(std::vector<double> &v1, std::vector<double> &v2)
 
     return out;
 }
+
+std::vector<double> scalarVectorMultiplication(std::vector<double> &v, double scalar)
+{
+    std::transform(v.begin(), v.end(), v.begin(), std::bind(std::multiplies<double>(), std::placeholders::_1, scalar));
+    return v;
+}

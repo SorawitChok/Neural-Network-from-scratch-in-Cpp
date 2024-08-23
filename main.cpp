@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <functional> 
 #include "layer.cpp"
 
 int main()
