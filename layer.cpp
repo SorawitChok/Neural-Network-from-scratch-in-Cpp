@@ -124,33 +124,37 @@ public:
 
         return output;
     }
-    // std::vector<double> backward(std::vector<double> error, double learning_rate)
-    // {
-    //     std::vector<double> input_error;  // dE/dX
-    //     std::vector<double> weight_error; // dE/dW
-    //     std::vector<double> bias_error;   // dE/dB
+    std::vector<double> backward(std::vector<double> error, double learning_rate)
+    {
+        std::vector<double> input_error;  // dE/dX
+        std::vector<std::vector<double>> weight_error; // dE/dW
+        std::vector<double> bias_error;   // dE/dB
 
-    //     std::vector<std::vector<double>> weight_transpose = transpose(weights);
-    //     bias_error = error;
+        std::vector<std::vector<double>> weight_transpose = transpose(weights);
+        bias_error = error;
 
-    //     for (int i = 0; i < weight_transpose.size(); i++)
-    //     {
-    //         input_error[i] = dotProduct(weight_transpose[i], error);
-    //     }
+        for (int i = 0; i < weight_transpose.size(); i++)
+        {
+            input_error[i] = dotProduct(weight_transpose[i], error);
+        }
 
-    //     for (int j = 0; j < error.size(); j++)
-    //     {
-    //         for (int i = 0; i < input.size(); i++)
-    //         {
-    //             weight_error[j][i] = error[j] * input[i];
-    //         }
-    //     }
+        for (int j = 0; j < error.size(); j++)
+        {
+            std::vector<double> row;
+            for (int i = 0; i < input.size(); i++)
+            {
+                row.push_back(error[j] * input[i]);
+            }
+            weight_error.push_back(row);
+        }
 
-    //     bias = subtract(bias, learning_rate * bias_error);
-    //     for (int i; weight_error.size(); i++)
-    //     {
-    //         weights[i] = subtract(weights[i], learning_rate * weight_error[i]);
-    //     }
-    //     return input_error;
-    // }
+        std::vector<double> delta_bias = scalarVectorMultiplication(bias_error, learning_rate);
+        bias = subtract(bias, delta_bias);
+        for (int i; weight_error.size(); i++)
+        {
+            std::vector<double> delta_weight = scalarVectorMultiplication(weight_error[i], learning_rate);
+            weights[i] = subtract(weights[i], delta_weight);
+        }
+        return input_error;
+    }
 };
