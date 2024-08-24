@@ -51,10 +51,9 @@ public:
                 printf("Loss: %lf\n", loss);
                 total_loss += loss;
 
-                double loss_derivative = MSELossDerivative(y[i], output[i]);
-                std::vector<double> error = {loss_derivative};
+                std::vector<double> loss_derivative = MSELossDerivative(y[i], output);
                 // Backward pass
-                backward_propagation(error, learning_rate);
+                backward_propagation(loss_derivative, learning_rate);
             }
 
             // Print loss for monitoring
