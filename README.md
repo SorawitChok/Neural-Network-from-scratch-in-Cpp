@@ -11,7 +11,7 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 - [Breaking into Modules](#Breaking-into-Modules)
 
 ## Concept & Intuition
-
+Have you ever wondered what is it that can make humans breathe, walk, make decisions, respond to some stimulus and environment, and ultimately think? It is quite clear now that the answer to this is our brain (as well as our spinal cord). Our central nervous system is composed of ... 
 ## Underlying Mathematics
 ### Forward Propagation
 
