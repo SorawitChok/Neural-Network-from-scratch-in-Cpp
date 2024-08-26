@@ -24,7 +24,6 @@ public:
     {
         std::vector<double> derivative = vectSigmoidDerivative(input);
         std::vector<double> grad_input;
-        grad_input.reserve(derivative.size());
         for (int i = 0; i < derivative.size(); ++i)
         {
             grad_input.push_back(derivative[i] * error[i]);
@@ -46,7 +45,6 @@ public:
     {
         std::vector<double> derivative = vectReluDerivative(input);
         std::vector<double> grad_input;
-        grad_input.reserve(derivative.size());
         for (int i = 0; i < derivative.size(); ++i)
         {
             grad_input.push_back(derivative[i] * error[i]);
@@ -69,7 +67,6 @@ public:
     {
         std::vector<double> derivative = vectLeakyReluDerivative(input, alpha);
         std::vector<double> grad_input;
-        grad_input.reserve(derivative.size());
         for (int i = 0; i < derivative.size(); ++i)
         {
             grad_input.push_back(derivative[i] * error[i]);
@@ -91,7 +88,6 @@ public:
     {
         std::vector<double> derivative = vectTanhDerivative(input);
         std::vector<double> grad_input;
-        grad_input.reserve(derivative.size());
         for (int i = 0; i < derivative.size(); ++i)
         {
             grad_input.push_back(derivative[i] * error[i]);
@@ -119,11 +115,11 @@ public:
     std::vector<double> forward(const std::vector<double> input_data) override
     {
         input = input_data;
+        output.clear();
         for (int i = 0; i < output_neuron; i++)
         {
             output.push_back(dotProduct(weights[i], input) + bias[i]);
         }
-
         return output;
     }
     std::vector<double> backward(std::vector<double> error, double learning_rate) override
@@ -131,8 +127,13 @@ public:
         std::vector<double> input_error;               // dE/dX
         std::vector<std::vector<double>> weight_error; // dE/dW
         std::vector<double> bias_error;                // dE/dB
+        std::vector<std::vector<double>> weight_transpose;
+        weight_error.clear();
+        bias_error.clear();
+        input_error.clear();
+        weight_transpose.clear();
 
-        std::vector<std::vector<double>> weight_transpose = transpose(weights);
+        weight_transpose = transpose(weights);
         bias_error = error;
         for (int i = 0; i < weight_transpose.size(); i++)
         {
@@ -150,11 +151,12 @@ public:
 
         std::vector<double> delta_bias = scalarVectorMultiplication(bias_error, learning_rate);
         bias = subtract(bias, delta_bias);
-        for (int i; i < weight_error.size(); i++)
+        for (int i = 0; i < weight_error.size(); i++)
         {
             std::vector<double> delta_weight = scalarVectorMultiplication(weight_error[i], learning_rate);
             weights[i] = subtract(weights[i], delta_weight);
         }
+
         return input_error;
     }
 };
