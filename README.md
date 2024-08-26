@@ -6,6 +6,7 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 - [Introduction](#Introduction)
 - [Concept & Intuition](#Concept-&-Intuition)
 - [Underlying Mathematics](#Underlying-Mathematics)
+  - [Forward Propagation](#Forward-Propagation)
 - [Breaking into Modules](#Breaking-into-Modules)
 
 ## Introduction
@@ -13,6 +14,9 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 ## Concept & Intuition
 
 ## Underlying Mathematics
+### Forward Propagation
+### Gradient Descent
+### Backward Propagation
 
 ## Breaking into Modules
 
