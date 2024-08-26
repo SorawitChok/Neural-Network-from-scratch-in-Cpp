@@ -51,7 +51,7 @@ public:
                 // Forward pass
                 std::vector<double> output = forward_propagation(X[i]);
 
-                // Compute loss (assuming mean squared error)
+                // Compute loss 
                 double loss = BCELoss(y[i], output);
                 total_loss += loss;
 
