@@ -23,6 +23,11 @@ y_3 = w_{31}x_1 + w_{32}x_2 + w_{33}x_3 + ... + w_{3i}x_i + b_3 \\
 y_j = w_{j1}x_1 + w_{j2}x_2 + w_{j3}x_3 + ... + w_{ji}x_i + b_j \\
 \end{aligned}
 ```
+```math
+\begin{aligned}
+\begin{bmatrix} X \\ Y \end{bmatrix}
+\end{aligned}
+```
 ### Gradient Descent
 ### Backward Propagation
 
