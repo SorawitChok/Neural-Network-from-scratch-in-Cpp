@@ -21,7 +21,9 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 ## Underlying Mathematics
 
 ### Forward Propagation
-Forward propagation is the process by which input data is passed through the network to generate an output. The input values are multiplied by the weights, biases are added, and the result is passed through another layers.
+Forward propagation is the process by which input data is passed through the network to generate an output. The input values are multiplied by the weights, biases are added, and the result is passed through other layers.
+
+![feedforward_NN](./images/NN_forward_ex.png)
 
 ```math
 \begin{aligned}
