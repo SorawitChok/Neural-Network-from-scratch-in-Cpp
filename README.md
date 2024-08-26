@@ -4,11 +4,17 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 
 ## Table of Contents
 - [Introduction](#Introduction)
-- Concept & Intuition
-- Underlying Mathematics
-- Breaking into Modules
+- [Concept & Intuition](#Concept-&-Intuition)
+- [Underlying Mathematics](#Underlying-Mathematics)
+- [Breaking into Modules](#Breaking-into-Modules)
 
 ## Introduction
+
+## Concept & Intuition
+
+## Underlying Mathematics
+
+## Breaking into Modules
 
 ## License
 This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
