@@ -43,7 +43,7 @@ In matrix form:
 Where:
 - $W_{j \times i}$ represents the weight matrix,
 - $x_{i \times 1}$ is the input vector,
-- $b_{j \times 1}$ is the bias vector, and
+- $b_{j \times 1}$ is the bias vector,
 - $\mathbf{y}_{j \times 1}$ is the output vector.
 
 ### Gradient Descent
