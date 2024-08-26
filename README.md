@@ -9,11 +9,19 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
   - [Gradient Descent](#Gradient-Descent)
   - [Backward Propagation](#Backward-Propagation)
 - [Breaking into Modules](#Breaking-into-Modules)
+- [License](#License)
+- [Contributing](#Contributing)
+- [Author](#Author)
 
 ## Concept & Intuition
-Have you ever wondered what is it that can make humans breathe, walk, make decisions, respond to some stimulus and environment, and ultimately think? It is quite clear now that the answer to this is our brain (as well as our spinal cord). Our central nervous system is composed of ... 
+Have you ever wondered what enables humans to breathe, walk, make decisions, respond to stimuli, and ultimately think? The answer lies in the brain and central nervous system, which consists of billions of interconnected neurons. Similarly, artificial neural networks (ANNs) are computational models inspired by the structure and function of the biological brain. They consist of interconnected layers of artificial neurons that process information and learn from data, enabling the network to make decisions and predictions.
+
+In this project, we aim to build a neural network from scratch using C++, demystifying the concepts and mathematics behind these models. By implementing each component manually, we gain a deeper understanding of how neural networks operate and how they learn from data.
+
 ## Underlying Mathematics
+
 ### Forward Propagation
+Forward propagation is the process by which input data is passed through the network to generate an output. The input values are multiplied by the weights, biases are added, and the result is passed through an activation function to produce the output.
 ```math
 \begin{aligned}
 y_1 = w_{11}x_1 + w_{12}x_2 + w_{13}x_3 + ... + w_{1i}x_i + b_1 \\
@@ -23,6 +31,8 @@ y_3 = w_{31}x_1 + w_{32}x_2 + w_{33}x_3 + ... + w_{3i}x_i + b_3 \\
 y_j = w_{j1}x_1 + w_{j2}x_2 + w_{j3}x_3 + ... + w_{ji}x_i + b_j \\
 \end{aligned}
 ```
+
+In matrix form:
 ```math
 \begin{aligned}
 \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_j \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ \vdots \\ x_i \end{bmatrix} + \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ \vdots \\ b_j \end{bmatrix} \\
