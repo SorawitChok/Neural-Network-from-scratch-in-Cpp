@@ -16,4 +16,4 @@ This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for
 Feel free to fork this repository and submit pull requests. Any contributions are welcome!
 
 ## Author
-This repository was created by Sorawit Chokphantavee and Sirawit Chokphantavee.
+This repository was created by [Sorawit Chokphantavee](https://github.com/SorawitChok) and [Sirawit Chokphantavee](https://github.com/SirawitC).
