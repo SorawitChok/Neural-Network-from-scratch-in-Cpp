@@ -1,8 +1,8 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "losses.cpp"
 #include "layer.cpp"
+#include "losses.cpp"
 
 class NN
 {
@@ -12,6 +12,11 @@ public:
     void add(Layer *layer)
     {
         layers.emplace_back(layer);
+    }
+
+    std::vector<double> predict(std::vector<double> input)
+    {
+        return forward_propagation(input);
     }
 
     // Forward propagation
@@ -47,11 +52,10 @@ public:
                 std::vector<double> output = forward_propagation(X[i]);
 
                 // Compute loss (assuming mean squared error)
-                double loss = MSELoss(y[i], output);
-                printf("Loss: %lf\n", loss);
+                double loss = BCELoss(y[i], output);
                 total_loss += loss;
 
-                std::vector<double> loss_derivative = MSELossDerivative(y[i], output);
+                std::vector<double> loss_derivative = BCELossDerivative(y[i], output);
                 // Backward pass
                 backward_propagation(loss_derivative, learning_rate);
             }
