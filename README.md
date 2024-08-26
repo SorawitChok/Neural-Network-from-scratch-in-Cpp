@@ -7,3 +7,13 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 - Concept & Intuition
 - Underlying Mathematics
 - Breaking into Modules
+
+
+## License
+This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contributing
+Feel free to fork this repository and submit pull requests. Any contributions are welcome!
+
+## Author
+This repository was created by Sorawit Chokphantavee and Sirawit Chokphantavee.
