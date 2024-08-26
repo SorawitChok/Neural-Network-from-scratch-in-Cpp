@@ -1,16 +1,23 @@
 #include <iostream>
 #include <vector>
-#include <functional> 
-#include "layer.cpp"
+#include "NN.cpp"
 
 int main()
 {
-    Layer *l[] = {new Linear(2, 3), new Relu(), new Linear(3, 1), new Sigmoid()};
-    std::vector<double> output = {1.123, 2.223};
-    for (int i = 0; i < sizeof(l) / sizeof(l[0]); i++)
-    {
-        output = l[i]->forward(output);
-    }
+    NN neural_network;
 
-    printf("%lf\n", output[0]);
+    // Add layers dynamically
+    neural_network.add(new Linear(2, 3));
+    neural_network.add(new Relu());
+    neural_network.add(new Linear(3, 1));
+    neural_network.add(new Sigmoid());
+
+    // Example input data
+    std::vector<std::vector<double>> X = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+    std::vector<std::vector<double>> y = {{0}, {1}, {1}, {0}};
+
+    // Train the network
+    neural_network.fit(X, y, 10, 0.01);
+
+    return 0;
 }
