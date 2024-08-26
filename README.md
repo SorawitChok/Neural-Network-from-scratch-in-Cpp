@@ -40,6 +40,12 @@ In matrix form:
 \mathbf{y}_{j \times 1} = W_{j \times i} x_{i \times 1} + b_{j \times 1}
 \end{aligned}
 ```
+Where:
+- \(W_{j \times i}\) represents the weight matrix,
+- \(x_{i \times 1}\) is the input vector,
+- \(b_{j \times 1}\) is the bias vector, and
+- \(\mathbf{y}_{j \times 1}\) is the output vector.
+
 ### Gradient Descent
 ### Backward Propagation
 
