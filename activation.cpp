@@ -11,7 +11,7 @@ double sigmoidDerivative(double x)
     return exp(x) / pow((exp(x) + 1), 2);
 }
 
-std::vector<double> vectSigmoid(const std::vector<double> &x)
+std::vector<double> vectSigmoid(const std::vector<double> x)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -20,7 +20,7 @@ std::vector<double> vectSigmoid(const std::vector<double> &x)
     return result;
 }
 
-std::vector<double> vectSigmoidDerivative(const std::vector<double> &x)
+std::vector<double> vectSigmoidDerivative(const std::vector<double> x)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -45,7 +45,7 @@ double reluDerivative(double x)
         return 0;
 }
 
-std::vector<double> vectRelu(const std::vector<double> &x)
+std::vector<double> vectRelu(const std::vector<double> x)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -54,7 +54,7 @@ std::vector<double> vectRelu(const std::vector<double> &x)
     return result;
 }
 
-std::vector<double> vectReluDerivative(const std::vector<double> &x)
+std::vector<double> vectReluDerivative(const std::vector<double> x)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -79,7 +79,7 @@ double leakyReluDerivative(double x, double alpha = 0.01)
         return alpha;
 }
 
-std::vector<double> vectLeakyRelu(const std::vector<double> &x, double alpha = 0.01)
+std::vector<double> vectLeakyRelu(const std::vector<double> x, double alpha = 0.01)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -88,7 +88,7 @@ std::vector<double> vectLeakyRelu(const std::vector<double> &x, double alpha = 0
     return result;
 }
 
-std::vector<double> vectLeakyReluDerivative(const std::vector<double> &x, double alpha = 0.01)
+std::vector<double> vectLeakyReluDerivative(const std::vector<double> x, double alpha = 0.01)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -107,7 +107,7 @@ double tanhDerivative(double x)
     return 1 - pow(tanh(x), 2);
 }
 
-std::vector<double> vectTanh(const std::vector<double> &x)
+std::vector<double> vectTanh(const std::vector<double> x)
 {
     std::vector<double> result;
     result.reserve(x.size());
@@ -116,7 +116,7 @@ std::vector<double> vectTanh(const std::vector<double> &x)
     return result;
 }
 
-std::vector<double> vectTanhDerivative(const std::vector<double> &x)
+std::vector<double> vectTanhDerivative(const std::vector<double> x)
 {
     std::vector<double> result;
     result.reserve(x.size());
