@@ -13,6 +13,7 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
   - [Gradient Descent](#Gradient-Descent)
   - [Backward Propagation](#Backward-Propagation)
 - [Breaking into Modules](#Breaking-into-Modules)
+- [Implementation](#Implementation)
 - [License](#License)
 - [Contributing](#Contributing)
 - [Author](#Author)
@@ -115,6 +116,13 @@ Where:
 - $x_{i \times 1}$ is the input vector,
 - $b_{j \times 1}$ is the bias vector,
 - $\mathbf{y}_{j \times 1}$ is the output vector.
+
+## Implementation
+### Utility Function
+### Layers
+### Activation Function
+### Loss Function
+
 
 ## License
 This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
