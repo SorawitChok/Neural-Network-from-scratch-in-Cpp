@@ -14,14 +14,21 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 - [Author](#Author)
 
 ## Concept & Intuition
-Have you ever wondered what enables humans to breathe, walk, make decisions, respond to stimuli, and ultimately think? The answer lies in the brain and central nervous system, which consists of billions of interconnected neurons. Similarly, artificial neural networks (ANNs) are computational models inspired by the structure and function of the biological brain. They consist of interconnected layers of artificial neurons that process information and learn from data, enabling the network to make decisions and predictions.
+Have you ever wondered what enables humans to breathe, walk, make decisions, respond to stimuli, and ultimately think? The answer lies in the brain and central nervous system, which consists of billions of interconnected neurons. Similarly, artificial neural networks (ANNs) are computational models inspired by the structure of the biological brain and neurons. They consist of interconnected layers of artificial neurons that process information and learn from data, enabling the network to make decisions and predictions.
 
-In this project, we aim to build a neural network from scratch using C++, demystifying the concepts and mathematics behind these models. By implementing each component manually, we gain a deeper understanding of how neural networks operate and how they learn from data.
+In this project, we aim to build a neural network from scratch using C++, demystifying the concepts and mathematics behind these models. By manually implementing each component, we gain a deeper understanding of how neural networks operate and how they learn from data.
 
 ## Underlying Mathematics
 
 ### Forward Propagation
-Forward propagation is the process by which input data is passed through the network to generate an output. The input values are multiplied by the weights, biases are added, and the result is passed through other layers. Suppose, we have the following neural network architecture taking in $i$ number of inputs and producing $j$ number of outputs.
+Forward propagation is the process by which input data is passed through the network to generate an output or prediction. The input values will be processed in each layer, and those processed values (output of the previous layer) will be passed as input for the subsequent layer. 
+
+### Gradient Descent
+### Backward Propagation
+
+## Breaking into Modules
+### Linear layer
+Suppose, we have the following neural network architecture taking in $i$ number of inputs and producing $j$ number of outputs.
 
 <p align="center">
   <img src="./Images/NN_forward_ex.png" alt="NN"/>
@@ -50,11 +57,6 @@ Where:
 - $x_{i \times 1}$ is the input vector,
 - $b_{j \times 1}$ is the bias vector,
 - $\mathbf{y}_{j \times 1}$ is the output vector.
-
-### Gradient Descent
-### Backward Propagation
-
-## Breaking into Modules
 
 ## License
 This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
