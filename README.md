@@ -68,9 +68,11 @@ As you can see, it looks just like another affine transformation, which implies 
 
 
 ### Activation Functions
+An activation function in a neural network introduces non-linearity, enabling the model to capture and learn complex patterns in data. Without non-linearity, even a deep network would effectively act like a shallow linear model. Here are some common activation functions:
 
 **Sigmoid Function**
 
+The sigmoid function is a mathematical function characterized by its s-shaped curve, which maps any real-valued input into a value between 0 and 1.
 ```math
 \sigma(x)= \frac {1}{1+e^{-x}}
 ```
