@@ -25,6 +25,13 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 ## Core Components
 ### Fully-connected layer
 ### Activation Functions
+**Sigmoid Function**
+```math
+\sigma(x)= \frac {1}{1+e^{-x}}
+```
+**Rectified Linear Unit (ReLU)**
+**Hyperbolic Tangent Function (Tanh)**
+
 ### Loss Functions
 
 ## Underlying Mathematics
