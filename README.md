@@ -31,16 +31,18 @@ Let's see an example. Suppose we have the following neural network architecture:
 
 Then, we can write out the computation of this network as mathematical equations as follows:
 ```math
-h_1 = w_{h_1x_1}x_1 + w_{h_1x_2}x_2 + b_1
-h_2 = w_{h_2x_1}x_1 + w_{h_2x_2}x_2 + b_2
-h_3 = w_{h_3x_1}x_1 + w_{h_3x_2}x_2 + b_3
-
-a_1 = \sigma(h_1)
-a_2 = \sigma(h_2)
-a_3 = \sigma(h_3)
-
-h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o
-y = a_o = \sigma(h_o)
+\begin{aligned}
+h_1 = w_{h_1x_1}x_1 + w_{h_1x_2}x_2 + b_1 \\
+h_2 = w_{h_2x_1}x_1 + w_{h_2x_2}x_2 + b_2 \\
+h_3 = w_{h_3x_1}x_1 + w_{h_3x_2}x_2 + b_3 \\
+\\
+a_1 = \sigma(h_1) \\
+a_2 = \sigma(h_2) \\
+a_3 = \sigma(h_3) \\
+\\
+h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o \\
+y = a_o = \sigma(h_o) \\
+\end{aligned}
 ```
 
 
