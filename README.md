@@ -304,7 +304,12 @@ std::vector<double> biasInitailizer(int size)
 
 ### Activation Function
 
-Next, we will look into how we can implement each activation function that will allow our neural network perform a non-linear transformation on the input data. For more information and implementation of vectorize version of each activation function, you can consult [activation.cpp](./activation.cpp) file.
+Next, we will look into how we can implement each activation function that will allow our neural network perform a non-linear transformation on the input data. For more information and implementation of vectorize version of each activation function, you can consult [activation.cpp](./activation.cpp) file. For these activartion functions, you will need to import the following dependencies.
+
+```cpp
+#include <cmath>
+#include <vector>
+```
 
 **Sigmoid and its derivative**
 
