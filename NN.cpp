@@ -9,11 +9,13 @@ class NN
 public:
     std::vector<std::unique_ptr<Layer>> layers;
 
+    // Add layers dynamically
     void add(Layer *layer)
     {
         layers.emplace_back(layer);
     }
 
+    // Make prediction using feed forward process
     std::vector<double> predict(std::vector<double> input)
     {
         return forward_propagation(input);
