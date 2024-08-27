@@ -28,6 +28,12 @@ The fully-connected layer is arguably one of the most vital constituents of any 
 ```math
 y = Wx + b
 ```
+Where:
+- $W$ represents the weight matrix (perform a linear transformation on $x$),
+- $x$ is the input vector,
+- $b$ is the bias vector (translate $x$),
+- $y$ is the output vector.
+
 ### Activation Functions
 **Sigmoid Function**
 ```math
