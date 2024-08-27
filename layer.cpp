@@ -2,6 +2,7 @@
 #include "activation.cpp"
 #include "utils.cpp"
 
+// Define Layer based class
 class Layer
 {
 public:
@@ -11,6 +12,7 @@ public:
     virtual std::vector<double> backward(std::vector<double> error, double learning_rate) = 0;
 };
 
+// Define Sigmoid class inherited from Layer
 class Sigmoid : public Layer
 {
 public:
@@ -32,6 +34,7 @@ public:
     }
 };
 
+// Define Relu class inherited from Layer
 class Relu : public Layer
 {
 public:
@@ -53,6 +56,7 @@ public:
     }
 };
 
+// Define LeakyRelu class inherited from Layer
 class LeakyRelu : public Layer
 {
 public:
@@ -75,6 +79,7 @@ public:
     }
 };
 
+// Define Tanh class inherited from Layer
 class Tanh : public Layer
 {
 public:
@@ -96,6 +101,7 @@ public:
     }
 };
 
+// Define Linear class (fully connected layer) inherited from Layer
 class Linear : public Layer
 {
 public:

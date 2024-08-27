@@ -22,7 +22,7 @@ int main()
     // Train the network
     neural_network.fit(X, y, 10000, 0.01);
 
-    // Test the network
+    // Test the network using XOR example
     std::vector<double> input = {0, 0};
     std::vector<double> output_prob = neural_network.predict(input);
     std::vector<double> output = {0};
