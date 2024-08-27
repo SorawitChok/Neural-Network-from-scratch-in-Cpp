@@ -30,6 +30,12 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 \sigma(x)= \frac {1}{1+e^{-x}}
 ```
 **Rectified Linear Unit (ReLU)**
+```math
+ReLU(x) = max(0,x) = \begin{cases}
+        x,&  \text{if } x > 0\\
+        0,&   \text{otherwise} 
+\end{cases}
+```
 
 **Hyperbolic Tangent Function (Tanh)**
 ```math
