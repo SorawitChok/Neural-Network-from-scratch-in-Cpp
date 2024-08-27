@@ -42,9 +42,9 @@ Where:
 - $b$ is the bias vector (translate $x$),
 - $y$ is the output vector.
 
-Although this transformation process is essential for the neural network, it is still very lacking in terms of its power, especially for processing highly complex data. The reason is that the affine transformation operations such as scaling, rotation, and shearing even with the translation still cannot account for the nonlinearity. Why is that? 
+Although this transformation process is essential for the neural network, it is still very lacking in terms of its power, especially for processing highly complex data. The reason is that the affine transformation operations such as scaling, rotation, and shearing even with the translation still cannot account for the nonlinearity. Why is that?
 
-let's see an example. Suppose we have a neural network with solely 2 fully-connected layers, then we can write out the equation as follows: 
+let's see an example. Suppose we have a neural network with solely 2 fully-connected layers, then we can write out the equation as follows:
 
 ```math
 h_1 = W_1x + b_1---------------------(1)
@@ -61,6 +61,7 @@ After that, we can group $W_2W_1$ into a new weight matrix $W'$ and $W_2b_1 + b_
 o = w'x + b'
 ```
 As you can see, it looks just like another affine transformation, which implies that no matter how many layers you put into your network, without a nonlinearity, the network will not be capable of exerting any more complex processing aside from a mere affine transformation (you can consult this [video](https://www.youtube.com/watch?v=JtVRC4qwmqg) for more explanation). This is why the activation function needs to come into play.
+
 
 ### Activation Functions
 
@@ -196,7 +197,7 @@ double dotProduct(std::vector<double> &v1, std::vector<double> &v2)
 }
 ```
 
-**Element-wise multiplication between a vector and a scalar** 
+**Element-wise multiplication between a vector and a scalar**
 
 This function allows you to perform an element-wise multiplication between a vector $\mathbf{v}$ and one scalar number $a$, returning a modified vector $a\mathbf{v}$.
 
@@ -214,7 +215,7 @@ std::vector<double> scalarVectorMultiplication(std::vector<double> &v, double sc
 }
 ```
 
-**Vector subtraction** 
+**Vector subtraction**
 
 This function allows you to easily compute the subtraction between two vectors $\mathbf{v_1}$ and $\mathbf{v_2}$, resulting in a new vector with the value of $\mathbf{v_1} - \mathbf{v_2}$.
 
@@ -234,7 +235,7 @@ std::vector<double> subtract(std::vector<double> &v1, std::vector<double> &v2)
 }
 ```
 
-**Matrix transpose** 
+**Matrix transpose**
 
 This function receives a matrix $\mathbf{M}$ as an input and returns the transpose of such matrix $\mathbf{m^T}$.
 
@@ -261,7 +262,7 @@ std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> &m)
 }
 ```
 
-**Weights initialization** 
+**Weights initialization**
 
 This function allows you to generate a 2D vector of size $rows \times cols$ with a random value between -1.0 and 1.0. This function will be further use to generate the weights of the fully-connected layer (Linear layer).
 
@@ -292,7 +293,7 @@ std::vector<std::vector<double>> uniformWeightInitializer(int rows, int cols)
 }
 ```
 
-**Bias initialization** 
+**Bias initialization**
 
 This function is used to generate a vector with a random value ranging from -1.0 to 1.0. This function will be further used to generate the bias of the fully connected layer (Linear layer).
 
@@ -318,9 +319,117 @@ std::vector<double> biasInitailizer(int size)
 }
 ```
 
-### Layers
-
 ### Activation Function
+
+Next, we will look into how we can implement each activation function that will allow our neural network perform a non-linear transformation on the input data. For more information and implementation of vectorize version of each activation function, you can consult [activation.cpp](./activation.cpp) file.
+
+**Sigmoid and its derivative**
+
+```cpp
+double sigmoid(double x)
+{
+    /**
+     * The sigmoid function maps any real-valued number to a value between 0 and 1.
+     * It is often used in the output layer of a neural network when the task is a
+     * binary classification problem.
+     * @param x the input value
+     * @return the output value of the sigmoid function
+     */
+    return 1 / (1 + exp(-x));
+}
+
+double sigmoidDerivative(double x)
+{ /**
+   * The derivative of the sigmoid function.
+   * @param x the input value
+   * @return the output value of the derivative of the sigmoid function
+   */
+    return exp(x) / pow((exp(x) + 1), 2);
+}
+```
+
+**ReLU and its derivative**
+
+```cpp
+double relu(double x)
+{ /**
+   * The Rectified Linear Unit (ReLU) activation function.
+   * @param x the input value
+   * @return the output value of the ReLU function
+   */
+    if (x > 0)
+        return x;
+    else
+        return 0;
+}
+
+double reluDerivative(double x)
+{ /**
+   * The derivative of the Rectified Linear Unit (ReLU) activation function.
+   * @param x the input value
+   * @return the output value of the derivative of the ReLU function
+   */
+    if (x >= 0)
+        return 1;
+    else
+        return 0;
+}
+```
+
+**Leaky ReLU and its derivative**
+
+```cpp
+double leakyRelu(double x, double alpha = 0.01)
+{
+    /**
+     * The Leaky Rectified Linear Unit (Leaky ReLU) activation function.
+     * @param x the input value
+     * @param alpha the leak rate, defaults to 0.01
+     * @return the output value of the Leaky ReLU function
+     */
+    if (x > 0)
+        return x;
+    else
+        return alpha * x;
+}
+
+double leakyReluDerivative(double x, double alpha = 0.01)
+{ /**
+   * The derivative of the Leaky Rectified Linear Unit (Leaky ReLU) activation function.
+   * @param x the input value
+   * @param alpha the leak rate, defaults to 0.01
+   * @return the output value of the derivative of the Leaky ReLU function
+   */
+    if (x >= 0)
+        return 1;
+    else
+        return alpha;
+}
+```
+
+**Tanh and its derivative**
+
+```cpp
+double tanh(double x)
+{ /**
+   * The Hyperbolic Tangent (tanh) activation function.
+   * @param x the input value
+   * @return the output value of the tanh function
+   */
+    return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
+}
+
+double tanhDerivative(double x)
+{ /**
+   * The derivative of the Hyperbolic Tangent (tanh) activation function.
+   * @param x the input value
+   * @return the output value of the derivative of the tanh function
+   */
+    return 1 - pow(tanh(x), 2);
+}
+```
+
+### Layers
 
 ### Loss Function
 
