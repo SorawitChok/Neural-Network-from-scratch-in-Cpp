@@ -26,7 +26,7 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 ### Fully-connected layer
 The fully-connected layer is arguably one of the most vital constituents of any neural network. The main functionality of this layer is to apply an affine transformation on the incoming data. But what exactly is this fancy term called affine transformation? Simply put, it is just a linear transformation (transforming a vector by multiplying it with a matrix) with a translation (adding another vector to a transformed vector). Mathematically, we can describe the output of this fully-connected layer (or affine transformation) as:
 ```math
-y = Wx + b
+y = \mathbf{W}x + b
 ```
 ### Activation Functions
 **Sigmoid Function**
