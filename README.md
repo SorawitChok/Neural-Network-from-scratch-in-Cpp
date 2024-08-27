@@ -35,6 +35,9 @@ Where:
 - $b$ is the bias vector (translate $x$),
 - $y$ is the output vector.
 
+Although this transformation process is essential for the neural network, it is still very lacking in terms of its power, especially for processing highly complex data. The reason is that the affine transformation operations such as scaling, rotation, and shearing even with the translation still cannot account for the nonlinearity. Why is that? 
+
+let's see an example. Suppose we have a neural network with solely 2 fully-connected layers, then we can write out the equation as follows: 
 ### Activation Functions
 **Sigmoid Function**
 ```math
