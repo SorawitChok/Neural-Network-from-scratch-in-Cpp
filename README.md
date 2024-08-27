@@ -21,10 +21,12 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 ## Underlying Mathematics
 
 ### Forward Propagation
-Forward propagation is the process by which input data is passed through the network to generate an output or prediction. The input values will be processed in each layer, and those processed values (output of the previous layer) will be passed as input for the subsequent layer. Let's see an example
+Forward propagation is the process by which input data is passed through the network to generate an output or prediction. The input values will be processed in each layer, and those processed values (output of the previous layer) will be passed as input for the subsequent layer. 
+
+Let's see an example. Suppose we have the following neural network architecture:
 
 <p align="center">
-  <img src="./Images/Forward_prop_math.png" alt="Forward"/>
+  <img src="./Images/Forward_propagation_math.png" alt="Forward"/>
 </p>
 
 ### Gradient Descent
@@ -32,7 +34,7 @@ Forward propagation is the process by which input data is passed through the net
 
 ## Breaking into Modules
 ### Linear layer
-Suppose, we have the following neural network architecture taking in $i$ number of inputs and producing $j$ number of outputs.
+Suppose, we have the following neural network linear(dense) layer taking in $i$ number of inputs and producing $j$ number of outputs.
 
 <p align="center">
   <img src="./Images/NN_forward_ex.png" alt="NN"/>
