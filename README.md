@@ -4,6 +4,10 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
 
 ## Table of Contents
 - [Concept & Intuition](#Concept-&-Intuition)
+- [Core Components](#Core-Components)
+  - [Fully-connected layer](#Fully-connected-layer)
+  - [Activation Function](#Activation-Function)
+  - [Loss Function](#Loss-Function)
 - [Underlying Mathematics](#Underlying-Mathematics)
   - [Forward Propagation](#Forward-Propagation)
   - [Gradient Descent](#Gradient-Descent)
@@ -18,6 +22,11 @@ Have you ever wondered what enables humans to breathe, walk, make decisions, res
 
 In this project, we aim to build a neural network from scratch using C++, demystifying the concepts and mathematics behind these models. By manually implementing each component, we gain a deeper understanding of how neural networks operate and how they learn from data.
 
+## Core Components
+### Fully-connected layer
+### Activation Functions
+### Loss Functions
+
 ## Underlying Mathematics
 
 ### Forward Propagation
@@ -29,7 +38,7 @@ Let's see an example. Suppose we have the following neural network architecture:
   <img src="./Images/Forward_propagation_math.png" alt="Forward"/>
 </p>
 
-Then, we can write out the computation of this network as mathematical equations as follows:
+Then, we can write out the forward propagation computation of this network as mathematical equations as follows:
 ```math
 \begin{aligned}
 h_1 = w_{h_1x_1}x_1 + w_{h_1x_2}x_2 + b_1 \\
