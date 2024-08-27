@@ -30,8 +30,11 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 \sigma(x)= \frac {1}{1+e^{-x}}
 ```
 **Rectified Linear Unit (ReLU)**
-**Hyperbolic Tangent Function (Tanh)**
 
+**Hyperbolic Tangent Function (Tanh)**
+```math
+tanh(x) = (e^x − e^{-x)) / (e^x + e^{-x})
+```
 ### Loss Functions
 
 ## Underlying Mathematics
