@@ -442,6 +442,8 @@ double tanhDerivative(double x)
 
 ### Loss Function
 
+### Neural Network
+
 ## License
 
 This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
