@@ -147,7 +147,7 @@ Now let's dive into the actual implementation of each module and function necess
 
 ### Utility Function
 
-We will strat with the important math operation and how we can implement it in C++. For these function you will need to import the following dependencies.
+We will start with the important math operation and how we can implement it in C++. For these functions, you will need to import the following dependencies.
 
 ```cpp
 #include <vector>
@@ -159,7 +159,7 @@ We will strat with the important math operation and how we can implement it in C
 
 **Compute dot product**
 
-This function allow you to compute the dot product between two input vector, namely $\mathbf{v_1}$ and $\mathbf{v_2}$, and return a scalar number ($\mathbf{v_1} \cdot \mathbf{v_2}$) as an output.
+This function allows you to compute the dot product between two input vectors, namely $\mathbf{v_1}$ and $\mathbf{v_2}$, and return a scalar number ($\mathbf{v_1} \cdot \mathbf{v_2}$) as an output.
 
 ```cpp
 double dotProduct(std::vector<double> &v1, std::vector<double> &v2)
@@ -181,7 +181,7 @@ double dotProduct(std::vector<double> &v1, std::vector<double> &v2)
 
 **Element-wise multiplication between a vector and a scalar** 
 
-This function allow you to perform an element-wise multiplication between a vector $\mathbf{v}$ and one scalar number $a$, returning a modified vector $a\mathbf{v}$.
+This function allows you to perform an element-wise multiplication between a vector $\mathbf{v}$ and one scalar number $a$, returning a modified vector $a\mathbf{v}$.
 
 ```cpp
 std::vector<double> scalarVectorMultiplication(std::vector<double> &v, double scalar)
@@ -199,7 +199,7 @@ std::vector<double> scalarVectorMultiplication(std::vector<double> &v, double sc
 
 **Vector subtraction** 
 
-This function allow you to easiy compute the subtraction between two vectors $\mathbf{v_1}$ and $\mathbf{v_2}$, resulting in a new vector with the value of $\mathbf{v_1} - \mathbf{v_2}$.
+This function allows you to easily compute the subtraction between two vectors $\mathbf{v_1}$ and $\mathbf{v_2}$, resulting in a new vector with the value of $\mathbf{v_1} - \mathbf{v_2}$.
 
 ```cpp
 std::vector<double> subtract(std::vector<double> &v1, std::vector<double> &v2)
@@ -219,7 +219,7 @@ std::vector<double> subtract(std::vector<double> &v1, std::vector<double> &v2)
 
 **Matrix transpose** 
 
-This function recieve a matrix $\mathbf{M}$ as an input and return the transpose of such matrix $\mathbf{m^T}$.
+This function receives a matrix $\mathbf{M}$ as an input and returns the transpose of such matrix $\mathbf{m^T}$.
 
 ```cpp
 std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> &m)
@@ -246,7 +246,7 @@ std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> &m)
 
 **Weights initialization** 
 
-This function allow you to generate a 2D vector of size $rows \times cols$ with a random value between -1.0 and 1.0. This function will be further use to generate the weights of the fully-connected layer (Linear layer).
+This function allows you to generate a 2D vector of size $rows \times cols$ with a random value between -1.0 and 1.0. This function will be further use to generate the weights of the fully-connected layer (Linear layer).
 
 ```cpp
 std::vector<std::vector<double>> uniformWeightInitializer(int rows, int cols)
@@ -277,7 +277,7 @@ std::vector<std::vector<double>> uniformWeightInitializer(int rows, int cols)
 
 **Bias initialization** 
 
-This function is use to generate a vector with random value ranging from -1.0 to 1.0. This function will be further use to generate the bias of the fully-connected layer (Linear layer).
+This function is used to generate a vector with a random value ranging from -1.0 to 1.0. This function will be further used to generate the bias of the fully connected layer (Linear layer).
 
 ```cpp
 std::vector<double> biasInitailizer(int size)
