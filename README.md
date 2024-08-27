@@ -24,6 +24,7 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 
 ## Core Components
 ### Fully-connected layer
+The fully-connected layer is arguably one of the most vital constituents of any neural network. The main functionality of this layer is to apply an affine transformation on the incoming data.
 ### Activation Functions
 **Sigmoid Function**
 ```math
