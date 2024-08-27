@@ -52,20 +52,23 @@ h_1 = W_1x + b_1----------------(1) \\
 o = h_2 = W_2h_1 + b_2--------------(2) \\
 \end{aligned}
 ```
+
 Then if we substitute (1) into (2), this is what we get:
+
 ```math
 \begin{aligned}
 o = W_2(W_1x + b_1) + b_2 \\
 o = W_2W_1x + W_2b_1 + b_2 \\
 \end{aligned}
 ```
+
 After that, we can group $W_2W_1$ into a new weight matrix $W'$ and $W_2b_1 + b_2$ into a new bias $b'$. Therefore, we end up with:
 
 ```math
 o = w'x + b'
 ```
-As you can see, it looks just like another affine transformation, which implies that no matter how many layers you put into your network, without a nonlinearity, the network will not be capable of exerting any more complex processing aside from a mere affine transformation (you can consult this [video](https://www.youtube.com/watch?v=JtVRC4qwmqg) for more explanation). This is why the activation function needs to come into play.
 
+As you can see, it looks just like another affine transformation, which implies that no matter how many layers you put into your network, without a nonlinearity, the network will not be capable of exerting any more complex processing aside from a mere affine transformation (you can consult this [video](https://www.youtube.com/watch?v=JtVRC4qwmqg) for more explanation). This is why the activation function needs to come into play.
 
 ### Activation Functions
 
@@ -439,6 +442,208 @@ double tanhDerivative(double x)
 ```
 
 ### Layers
+
+Then we will move into the very core of constructing a neural network which is the layers. To implement these layer first we need to import the following dependencies.
+
+```cpp
+#include <vector>
+#include "activation.cpp" // Previously create activation functions
+#include "utils.cpp" // Previously created utility functions
+```
+
+**Based class 'Layer'**
+
+First, we shall define the based class for all layer. This class will consists of two public variables, input and output, and two public virtual method, forward and backward.
+
+```cpp
+class Layer
+{
+public:
+    std::vector<double> input;
+    std::vector<double> output;
+    virtual std::vector<double> forward(const std::vector<double> input_data) = 0;
+    virtual std::vector<double> backward(std::vector<double> error, double learning_rate) = 0;
+};
+```
+
+**Sigmoid layer**
+
+The Sigmoid class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed forward process and backpropagation process.
+
+```cpp
+class Sigmoid : public Layer
+{
+public:
+    std::vector<double> forward(const std::vector<double> input_data) override
+    {
+        input = input_data;
+        output = vectSigmoid(input);
+        return output;
+    }
+    std::vector<double> backward(std::vector<double> error, double learning_rate) override
+    {
+        std::vector<double> derivative = vectSigmoidDerivative(input);
+        std::vector<double> grad_input;
+        for (int i = 0; i < derivative.size(); ++i)
+        {
+            grad_input.push_back(derivative[i] * error[i]);
+        }
+        return grad_input;
+    }
+};
+```
+
+**ReLU layer**
+The Relu class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed forward process and backpropagation process.
+
+```cpp
+class Relu : public Layer
+{
+public:
+    std::vector<double> forward(const std::vector<double> input_data) override
+    {
+        input = input_data;
+        output = vectRelu(input);
+        return output;
+    }
+    std::vector<double> backward(std::vector<double> error, double learning_rate) override
+    {
+        std::vector<double> derivative = vectReluDerivative(input);
+        std::vector<double> grad_input;
+        for (int i = 0; i < derivative.size(); ++i)
+        {
+            grad_input.push_back(derivative[i] * error[i]);
+        }
+        return grad_input;
+    }
+};
+```
+
+**Leaky ReLU layer**
+
+The LeakyRelu class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed forward process and backpropagation process.
+
+```cpp
+class LeakyRelu : public Layer
+{
+public:
+    double alpha = 0.01;
+    std::vector<double> forward(const std::vector<double> input_data) override
+    {
+        input = input_data;
+        output = vectLeakyRelu(input, alpha);
+        return output;
+    }
+    std::vector<double> backward(std::vector<double> error, double learning_rate) override
+    {
+        std::vector<double> derivative = vectLeakyReluDerivative(input, alpha);
+        std::vector<double> grad_input;
+        for (int i = 0; i < derivative.size(); ++i)
+        {
+            grad_input.push_back(derivative[i] * error[i]);
+        }
+        return grad_input;
+    }
+};
+```
+
+**Tanh layer**
+
+The Tanh class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed forward process and backpropagation process.
+
+```cpp
+class Tanh : public Layer
+{
+public:
+    std::vector<double> forward(const std::vector<double> input_data) override
+    {
+        input = input_data;
+        output = vectTanh(input);
+        return output;
+    }
+    std::vector<double> backward(std::vector<double> error, double learning_rate) override
+    {
+        std::vector<double> derivative = vectTanhDerivative(input);
+        std::vector<double> grad_input;
+        for (int i = 0; i < derivative.size(); ++i)
+        {
+            grad_input.push_back(derivative[i] * error[i]);
+        }
+        return grad_input;
+    }
+};
+```
+
+**Linear layer**
+
+The Linear layer or fully connected layer is also inherited from the Layer class. The Linear class constructor require the number of input and output neuron to create its instance. Then according to these number its weights and bias will be create accordingly.
+
+```cpp
+class Linear : public Layer
+{
+public:
+    int input_neuron;
+    int output_neuron;
+    std::vector<std::vector<double>> weights;
+    std::vector<double> bias;
+
+    Linear(int num_in, int num_out)
+    {
+        input_neuron = num_in;
+        output_neuron = num_out;
+        weights = uniformWeightInitializer(num_out, num_in);
+        bias = biasInitailizer(num_out);
+    }
+
+    std::vector<double> forward(const std::vector<double> input_data) override
+    {
+        input = input_data;
+        output.clear();
+        for (int i = 0; i < output_neuron; i++)
+        {
+            output.push_back(dotProduct(weights[i], input) + bias[i]);
+        }
+        return output;
+    }
+    std::vector<double> backward(std::vector<double> error, double learning_rate) override
+    {
+        std::vector<double> input_error;               // dE/dX
+        std::vector<std::vector<double>> weight_error; // dE/dW
+        std::vector<double> bias_error;                // dE/dB
+        std::vector<std::vector<double>> weight_transpose;
+        weight_error.clear();
+        bias_error.clear();
+        input_error.clear();
+        weight_transpose.clear();
+
+        weight_transpose = transpose(weights);
+        bias_error = error;
+        for (int i = 0; i < weight_transpose.size(); i++)
+        {
+            input_error.push_back(dotProduct(weight_transpose[i], error));
+        }
+        for (int j = 0; j < error.size(); j++)
+        {
+            std::vector<double> row;
+            for (int i = 0; i < input.size(); i++)
+            {
+                row.push_back(error[j] * input[i]);
+            }
+            weight_error.push_back(row);
+        }
+
+        std::vector<double> delta_bias = scalarVectorMultiplication(bias_error, learning_rate);
+        bias = subtract(bias, delta_bias);
+        for (int i = 0; i < weight_error.size(); i++)
+        {
+            std::vector<double> delta_weight = scalarVectorMultiplication(weight_error[i], learning_rate);
+            weights[i] = subtract(weights[i], delta_weight);
+        }
+
+        return input_error;
+    }
+};
+```
 
 ### Loss Function
 
