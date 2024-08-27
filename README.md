@@ -33,7 +33,7 @@ In this project, we aim to build a neural network from scratch using C++, demyst
 
 **Hyperbolic Tangent Function (Tanh)**
 ```math
-tanh(x) = \frac{(e^x − e^{-x))}{(e^x + e^{-x})}
+tanh(x) = \frac{(e^x − e^{-x})}{(e^x + e^{-x})}
 ```
 ### Loss Functions
 
