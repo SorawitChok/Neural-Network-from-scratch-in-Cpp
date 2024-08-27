@@ -48,7 +48,7 @@ let's see an example. Suppose we have a neural network with solely 2 fully-conne
 
 ```math
 \begin{aligned}
-h_1 = W_1x + b_1---------------------(1) \\
+h_1 = W_1x + b_1----------------(1) \\
 o = h_2 = W_2h_1 + b_2---------------(2) \\
 \end{aligned}
 ```
