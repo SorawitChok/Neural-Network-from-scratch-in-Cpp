@@ -4,6 +4,7 @@
 
 int main()
 {
+    // Initialize the neural network
     NN neural_network;
 
     // Add layers dynamically
