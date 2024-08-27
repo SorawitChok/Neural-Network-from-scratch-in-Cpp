@@ -551,7 +551,7 @@ public:
 
 **Tanh layer**
 
-The Tanh class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed forward process and backpropagation process.
+The Tanh class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed-forward process and backpropagation process.
 
 ```cpp
 class Tanh : public Layer
@@ -578,7 +578,7 @@ public:
 
 **Linear layer**
 
-The Linear layer or fully connected layer is also inherited from the Layer class. The Linear class constructor require the number of input and output neuron to create its instance. Then according to these number its weights and bias will be create accordingly.
+The Linear layer or fully connected layer is also inherited from the Layer class. The Linear class constructor requires the number of input and output neurons to create its instance. Then according to these numbers, its weights and bias will be created.
 
 ```cpp
 class Linear : public Layer
