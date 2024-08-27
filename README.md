@@ -46,6 +46,23 @@ Although this transformation process is essential for the neural network, it is 
 
 let's see an example. Suppose we have a neural network with solely 2 fully-connected layers, then we can write out the equation as follows:
 
+```math
+h_1 = W_1x + b_1---------------------(1)
+o = h_2 = W_2h_1 + b_2---------------(2)
+```
+Then if we substitute (1) into (2), this is what we get:
+```math
+o = W_2(W_1x + b_1) + b_2
+o = W_2W_1x + W_2b_1 + b_2
+```
+After that, we can group $W_2W_1$ into a new weight matrix $W'$ and $W_2b_1 + b_2$ into a new bias $b'$. Therefore, we end up with:
+
+```math
+o = w'x + b'
+```
+As you can see, it looks just like another affine transformation, which implies that no matter how many layers you put into your network, without a nonlinearity, the network will not be capable of exerting any more complex processing aside from a mere affine transformation (you can consult this [video](https://www.youtube.com/watch?v=JtVRC4qwmqg) for more explanation). This is why the activation function needs to come into play.
+
+
 ### Activation Functions
 
 **Sigmoid Function**
