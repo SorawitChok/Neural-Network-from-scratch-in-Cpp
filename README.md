@@ -147,6 +147,18 @@ After we successfully define the goal, the next step is to look into the actual 
 
 ### Gradient Descent
 
+Let's start with **"The tale of gardient descend"**.
+
+Imagine you are in an unfamiliar terrain called "Parametric Space." This terrain is vast, stretching out in every direction, but it’s shrouded in a thick fog that obscures your vision. You can't see the landscape around you, where the valleys or peaks are, nor can you see the distant horizon. However, you possess one crucial ability: you can feel the slope of the ground beneath your feet.
+
+Your ultimate goal in this mysterious space is to find the lowest point—a place so deep that no other point in the entire terrain is lower, called "global minimum", and reaching it is your mission.
+
+In this terrain, the height of the ground represents something called the loss function. The higher the terrain, the greater the loss, which measures how far off you are from your desired goal. So, to minimize your loss, you must descend to the lowest possible point, where the terrain flattens out, indicating that your loss is at its minimum.
+
+You start your journey at a random location in the Parametric Space. You take a small step forward, feeling the slope beneath you. If the ground tilts downward, you follow it, trusting that it will lead you closer to your goal. This process is called Gradient Descent.
+
+Your journey in the Parametric Space illustrates the power of the Gradient Descent algorithm—a methodical, iterative approach to finding the optimal solution in a complex landscape, where the path is not always clear, but the goal reamin the same, finding the most profound depth, in other words, global minimum which provide you the lowest loss.
+
 ## Underlying Mathematics
 
 ### Forward Propagation
