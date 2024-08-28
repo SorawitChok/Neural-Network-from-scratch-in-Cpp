@@ -120,7 +120,11 @@ MSE = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
 ```math
 BCE = -\frac{1}{N} \sum_{i=1}^N y_i\cdot\ln(\hat{y}_i) + (1 - y_i)\cdot\ln(1 - \hat{y}_i)
 ```
+
+After we successfully define the goal, the next step is to look into the actual task of learning or optimizing the network toward the goal, and this will be the role of an important mathematical method called gradient descent.
+
 ### Gradient Descent
+
 
 ## Underlying Mathematics
 
