@@ -101,6 +101,8 @@ tanh(x) = \frac{(e^x − e^{-x})}{(e^x + e^{-x})}
 ```
 Now that we already laid some foundation of the neural network, from the fully-connected layer performing the affine transformation to the activation functions, which helps provide some nonlinearity, another question may arise: How can we obtain the optimal weight matrix and bias vector that will be used for an affine transformation? How can the neural network learn those values effectively? 
 
+Well, first things first, when learning anything, one of the most essential parts is the goal or objective that one wants to achieve. In the case of neural networks, it is to make a prediction that is as close to the target value as possible. As the guiding light for the learning process of neural networks, what we need is the loss function.  
+
 ### Loss Functions
 
 ## Underlying Mathematics
