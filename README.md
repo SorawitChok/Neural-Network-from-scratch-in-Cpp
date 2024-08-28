@@ -269,7 +269,7 @@ std::vector<double> subtract(std::vector<double> &v1, std::vector<double> &v2)
 
 **Matrix transpose**
 
-This function receives a matrix $\mathbf{M}$ as an input and returns the transpose of such matrix $\mathbf{m^T}$.
+This function receives a matrix $\mathbf{M}$ as an input and returns the transpose of such matrix $\mathbf{M^T}$.
 
 ```cpp
 std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> &m)
