@@ -104,7 +104,15 @@ Now that we already laid some foundation of the neural network, from the fully-c
 Well, first things first, when learning anything, one of the most essential parts is the goal or objective that one wants to achieve. In the case of neural networks, it is to make a prediction that is as close to the target value as possible. As the guiding light for the learning process of neural networks, what we need is the loss function.  
 
 ### Loss Functions
-A loss function is a crucial component in a neural network that quantifies the difference between a model's predictions and the actual target values. It provides a numerical measure of how well the model is performing, guiding the optimization process by indicating how to adjust the model’s parameters to minimize errors. Essentially, the loss function acts as a feedback mechanism, helping to improve the accuracy of the model by minimizing the discrepancy between predicted and true outcomes.
+A loss function is a crucial component in a neural network that quantifies the difference between a model's predictions and the actual target values. It provides a numerical measure of how well the model is performing, guiding the optimization process by indicating how to adjust the model’s parameters to minimize errors. Essentially, the loss function acts as a feedback mechanism, helping to improve the accuracy of the model by minimizing the discrepancy between predicted and true outcomes. Some commonly used loss functions are:
+
+**Mean Squared Error (MSE)**
+
+```math
+MSE = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
+```
+
+**Binary Cross Entropy (BCE)**
 
 ## Underlying Mathematics
 
