@@ -9,9 +9,9 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
   - [Fully-connected layer](#Fully-connected-layer)
   - [Activation Function](#Activation-Function)
   - [Loss Function](#Loss-Function)
+  - [Gradient Descent](#Gradient-Descent)
 - [Underlying Mathematics](#Underlying-Mathematics)
   - [Forward Propagation](#Forward-Propagation)
-  - [Gradient Descent](#Gradient-Descent)
   - [Backward Propagation](#Backward-Propagation)
 - [Breaking into Modules](#Breaking-into-Modules)
 - [Implementation](#Implementation)
@@ -120,6 +120,7 @@ MSE = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
 ```math
 BCE = -\frac{1}{N} \sum_{i=1}^N y_i\cdot\ln(\hat{y}_i) + (1 - y_i)\cdot\ln(1 - \hat{y}_i)
 ```
+### Gradient Descent
 
 ## Underlying Mathematics
 
@@ -149,8 +150,6 @@ h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o \\
 y = a_o = \sigma(h_o) \\
 \end{aligned}
 ```
-
-### Gradient Descent
 
 ### Backward Propagation
 
