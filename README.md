@@ -110,6 +110,7 @@ Well, first things first, when learning anything, one of the most essential part
 A loss function is a crucial component in a neural network that quantifies the difference between a model's predictions and the actual target values. It provides a numerical measure of how well the model is performing, guiding the optimization process by indicating how to adjust the model’s parameters to minimize errors. Essentially, the loss function acts as a feedback mechanism, helping to improve the accuracy of the model by minimizing the discrepancy between predicted and true outcomes. Some commonly used loss functions are:
 
 **Mean Squared Error (MSE)**
+
 Mean Squared Error (MSE) is a loss function widely used in machine learning and statistics. It measures the average squared difference between the predicted values and the actual values. A lower MSE indicates a better fit between the predicted values and the actual values. A higher MSE suggests a poorer fit.
 
 ```math
