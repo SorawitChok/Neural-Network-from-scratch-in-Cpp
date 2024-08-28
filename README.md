@@ -71,7 +71,7 @@ o = W'x + b'
 As you can see, it looks just like another affine transformation, which implies that no matter how many layers you put into your network, without a nonlinearity, the network will not be capable of exerting any more complex processing aside from a mere affine transformation (you can consult this [video](https://www.youtube.com/watch?v=JtVRC4qwmqg) for more explanation). This is why the activation function needs to come into play.
 
 ### Activation Functions
-An activation function in a neural network introduces non-linearity, enabling the model to capture and learn complex patterns in data. Without non-linearity, even a deep network would effectively act like a shallow linear model. Here are some common activation functions:
+An activation function in a neural network introduces non-linearity, allowing the model to learn and represent complex patterns in data. Without these non-linear functions, even a deep network would effectively behave like a shallow linear model, limiting its ability to capture intricate relationships. Here are some commonly used activation functions:
 
 **Sigmoid Function**
 
@@ -99,6 +99,7 @@ The tanh activation function, which stands for hyperbolic tangent, is a widely u
 ```math
 tanh(x) = \frac{(e^x − e^{-x})}{(e^x + e^{-x})}
 ```
+Now that we already laid some foundation of the neural network, from the fully-connected layer performing the affine transformation to the activation functions, which helps provide some nonlinearity, another question may arise: How can we obtain the optimal weight matrix and bias vector that will be used for an affine transformation? How can the neural network learn those values effectively? 
 
 ### Loss Functions
 
