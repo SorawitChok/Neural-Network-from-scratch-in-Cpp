@@ -117,7 +117,7 @@ MSE = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
 **Binary Cross Entropy (BCE)**
 
 ```math
-BCE = -\frac{1}{N} \sum_{i=1}^N y_i\cdot\ln
+BCE = -\frac{1}{N} \sum_{i=1}^N y_i\cdot\ln(\hat{y}_i) + (1 - y_i)\cdot\ln(1 - \hat{y}_i)
 ```
 
 ## Underlying Mathematics
