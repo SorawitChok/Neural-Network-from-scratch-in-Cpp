@@ -71,6 +71,7 @@ o = W'x + b'
 As you can see, it looks just like another affine transformation, which implies that no matter how many layers you put into your network, without a nonlinearity, the network will not be capable of exerting any more complex processing aside from a mere affine transformation (you can consult this [video](https://www.youtube.com/watch?v=JtVRC4qwmqg) for more explanation). This is why the activation function needs to come into play.
 
 ### Activation Functions
+
 An activation function in a neural network introduces non-linearity, allowing the model to learn and represent complex patterns in data. Without these non-linear functions, even a deep network would effectively behave like a shallow linear model, limiting its ability to capture intricate relationships. Here are some commonly used activation functions:
 
 **Sigmoid Function**
@@ -83,7 +84,7 @@ The sigmoid function is a mathematical function with an S-shaped curve that tran
 
 **Rectified Linear Unit (ReLU)**
 
-The Rectified Linear Unit (ReLU) function is both simple and effective. It outputs the input value directly if the input is positive, and zero if the input is negative. This straightforward approach introduces non-linearity into neural networks, allowing them to model complex patterns while remaining computationally efficient. 
+The Rectified Linear Unit (ReLU) function is both simple and effective. It outputs the input value directly if the input is positive, and zero if the input is negative. This straightforward approach introduces non-linearity into neural networks, allowing them to model complex patterns while remaining computationally efficient.
 
 ```math
 ReLU(x) = max(0,x) = \begin{cases}
@@ -99,7 +100,8 @@ The tanh activation function, which stands for hyperbolic tangent, is a widely u
 ```math
 tanh(x) = \frac{(e^x − e^{-x})}{(e^x + e^{-x})}
 ```
-Now that we already laid some foundation of the neural network, from the fully-connected layer performing the affine transformation to the activation functions, which helps provide some nonlinearity, another question may arise: How can we obtain the optimal weight matrix and bias vector that will be used for an affine transformation? How can the neural network learn those values effectively? 
+
+Now that we already laid some foundation of the neural network, from the fully-connected layer performing the affine transformation to the activation functions, which helps provide some nonlinearity, another question may arise: How can we obtain the optimal weight matrix and bias vector that will be used for an affine transformation? How can the neural network learn those values effectively?
 
 Well, first things first, when learning anything, one of the most essential parts is the goal or objective that one wants to achieve. In the case of neural networks, it is to make a prediction that is as close to the target value as possible. As the guiding light for the learning process of neural networks, what we need is the loss function.  
 
@@ -517,6 +519,7 @@ public:
 ```
 
 **ReLU layer**
+
 The Relu class is inherited from the Layer class with two override method for forward and backward, which allows the information to propagate through feed forward process and backpropagation process.
 
 ```cpp
@@ -670,7 +673,365 @@ public:
 
 ### Loss Function
 
+In this project, we implement two frequently used loss function, namely binary cross-entropy loss and mean-square error loss. To implement these loss functions you will need to import the following dependencies.
+
+```cpp
+#include <vector>
+#include <math.h>
+#include <cmath>
+```
+
+**Binary cross-entropy loss (BCE)**
+
+This loss function is specifically designed for binary classification tasks, normally known as binary cross-entropy (BCE) or log loss. It quantifies the difference between the predicted probability distribution and the actual binary labels (0 or 1). Here we demonstrate the implementation of the BCE loss function as well as its derivative.
+
+```cpp
+double BCELoss(std::vector<double> true_label, std::vector<double> pred_prob)
+{ /**
+   * Binary Cross Entropy Loss
+   * @param true_label true labels of the data
+   * @param pred_prob predicted probabilities
+   * @return binary cross entropy loss
+   */
+    double sum = 0;
+    for (int i = 0; i < pred_prob.size(); i++)
+    {
+        sum += true_label[i] * log(pred_prob[i]) + (1 - true_label[i]) * log((1 - pred_prob[i]));
+    }
+    int size = true_label.size();
+    double loss = -(1.0 / size) * sum;
+    return loss;
+}
+
+std::vector<double> BCELossDerivative(std::vector<double> true_label, std::vector<double> pred_prob)
+{ /**
+   * Compute derivative of binary cross entropy loss
+   * @param true_label true labels of the data
+   * @param pred_prob predicted probabilities
+   * @return derivative of binary cross entropy loss
+   */
+    std::vector<double> dev = {(pred_prob[0] - true_label[0]) / ((pred_prob[0]) * (1 - pred_prob[0]))};
+    return dev;
+}
+```
+
+**Mean-squared error loss (MSE)**
+
+The mean-squared error (MSE) loss function is a versatile metric commonly used in regression tasks to measure the average squared difference between the predicted values and the actual target values. The following code is the implementation of MSE loss function and its derivative.
+
+```cpp
+double MSELoss(std::vector<double> true_label, std::vector<double> pred)
+{ /**
+   * Mean Squared Error Loss
+   * @param true_label true labels of the data
+   * @param pred predicted values
+   * @return mean squared error loss
+   */
+    double sum = 0;
+    for (int i = 0; i < true_label.size(); i++)
+    {
+        sum += pow(true_label[i] - pred[i], 2.0);
+    }
+    int size = true_label.size();
+    double loss = (1.0 / size) * sum;
+    return loss;
+}
+
+std::vector<double> MSELossDerivative(std::vector<double> true_label, std::vector<double> pred)
+{ /**
+   * Compute derivative of mean squared error loss
+   * @param true_label true labels of the data
+   * @param pred predicted values
+   * @return derivative of mean squared error loss
+   */
+    std::vector<double> sub = subtract(pred, true_label);
+    std::vector<double> dev = scalarVectorMultiplication(sub, 2);
+    return dev;
+}
+```
+
 ### Neural Network
+
+Now, let's implement the most important part of this project, the neural network itself. There are five main method that we need to implement as follow:
+
+- **add()** - To add each layer into our neural network.
+- **predict()** - To perform feed forward operation which will bestow us with the predicted output.
+- **forward_propagation()** - To perform feed forward operation as well, but this function will be use solely in the training process.
+- **backward_propagation()** - To perform backpropagation in order to update the learnable parameter of our neural network, namely weights and bias.
+- **fit()** - To train our neural network.
+
+**The abstract structure of our neural network (NN class)**
+
+```cpp
+class NN
+{
+public:
+    std::vector<std::unique_ptr<Layer>> layers;
+
+    void add(Layer *layer)
+    {
+        // Implement add method here
+    }
+
+    std::vector<double> predict(std::vector<double> input)
+    {
+        // Implement predict method here
+    }
+
+    std::vector<double> forward_propagation(conststd::vector<double> input)
+    {
+        // Implement forward propagation method here
+    }
+
+    void backward_propagation(const std::vector<double> &error, double learning_rate)
+    {
+        // Implement backward propagation method here
+    }
+
+    void fit(const std::vector<std::vector<double>> &X, const std::vector<std::vector<double>> &y, int epochs, double learning_rate)
+    {
+      // Implement fit method here
+    }
+};
+```
+
+**add() method implementation**
+
+```cpp
+void add(Layer *layer)
+{
+    layers.emplace_back(layer);
+}
+```
+
+**predict() method implementation**
+
+```cpp
+std::vector<double> predict(std::vector<double> input)
+{
+    return forward_propagation(input);
+}
+```
+
+**forward_propagation() method implementation**
+
+```cpp
+std::vector<double> forward_propagation(const std::vector<double> input)
+{
+    std::vector<double> output = input;
+    for (const auto &layer : layers)
+    {
+        output = layer->forward(output);
+    }
+    return output;
+}
+```
+
+**backward_propagation() method implementation**
+
+```cpp
+void backward_propagation(const std::vector<double> &error, double learning_rate)
+{
+    std::vector<double> grad = error;
+    for (auto it = layers.rbegin(); it != layers.rend(); ++it)
+    {
+        grad = (*it)->backward(grad, learning_rate);
+    }
+}
+```
+
+**fit() method implementation**
+
+```cpp
+void fit(const std::vector<std::vector<double>> &X, const std::vector<std::vector<double>> &y, int epochs, double learning_rate)
+{
+    for (int epoch = 0; epoch < epochs; ++epoch)
+    {
+        double total_loss = 0.0;
+        for (size_t i = 0; i < X.size(); ++i)
+        {
+            // Forward pass
+            std::vector<double> output = forward_propagation(X[i]);
+
+            // Compute loss
+            double loss = BCELoss(y[i], output);
+            total_loss += loss;
+
+            std::vector<double> loss_derivative = BCELossDerivative(y[i], output);
+            // Backward pass
+            backward_propagation(loss_derivative, learning_rate);
+        }
+
+        // Print loss for monitoring
+        std::cout << "Epoch " << epoch + 1 << "/" << epochs << " - Loss: " << total_loss / X.size() << std::endl;
+    }
+}
+```
+
+**Combine everything together**
+
+```cpp
+class NN
+{
+public:
+    std::vector<std::unique_ptr<Layer>> layers;
+
+    // Add layers dynamically
+    void add(Layer *layer)
+    {
+        layers.emplace_back(layer);
+    }
+
+    // Make prediction using feed forward process
+    std::vector<double> predict(std::vector<double> input)
+    {
+        return forward_propagation(input);
+    }
+
+    // Forward propagation
+    std::vector<double> forward_propagation(const std::vector<double> input)
+    {
+        std::vector<double> output = input;
+        for (const auto &layer : layers)
+        {
+            output = layer->forward(output);
+        }
+        return output;
+    }
+
+    // Backward propagation
+    void backward_propagation(const std::vector<double> &error, double learning_rate)
+    {
+        std::vector<double> grad = error;
+        for (auto it = layers.rbegin(); it != layers.rend(); ++it)
+        {
+            grad = (*it)->backward(grad, learning_rate);
+        }
+    }
+
+    // Training function
+    void fit(const std::vector<std::vector<double>> &X, const std::vector<std::vector<double>> &y, int epochs, double learning_rate)
+    {
+        for (int epoch = 0; epoch < epochs; ++epoch)
+        {
+            double total_loss = 0.0;
+            for (size_t i = 0; i < X.size(); ++i)
+            {
+                // Forward pass
+                std::vector<double> output = forward_propagation(X[i]);
+
+                // Compute loss
+                double loss = BCELoss(y[i], output);
+                total_loss += loss;
+
+                std::vector<double> loss_derivative = BCELossDerivative(y[i], output);
+                // Backward pass
+                backward_propagation(loss_derivative, learning_rate);
+            }
+
+            // Print loss for monitoring
+            std::cout << "Epoch " << epoch + 1 << "/" << epochs << " - Loss: " << total_loss / X.size() << std::endl;
+        }
+    }
+};
+```
+
+## Example: XOR operation prediction
+
+```cpp
+#include <iostream>
+#include <vector>
+#include "NN.cpp"
+
+int main()
+{
+    // Initialize the neural network
+    NN neural_network;
+
+    // Add layers dynamically
+    neural_network.add(new Linear(2, 3));
+    neural_network.add(new Relu());
+    neural_network.add(new Linear(3, 3));
+    neural_network.add(new Relu());
+    neural_network.add(new Linear(3, 1));
+    neural_network.add(new Sigmoid());
+
+    // Example input data
+    std::vector<std::vector<double>> X = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+    std::vector<std::vector<double>> y = {{0}, {1}, {1}, {0}};
+
+    // Train the network
+    neural_network.fit(X, y, 10000, 0.01);
+
+    // Test the network using XOR example
+    std::vector<double> input = {0, 0};
+    std::vector<double> output_prob = neural_network.predict(input);
+    std::vector<double> output = {0};
+    if (output_prob[0] > 0.5)
+    {
+        output = {1};
+    }
+    else
+    {
+        output = {0};
+    }
+    std::cout << "Input: " << input[0] << ", " << input[1] << std::endl;
+    std::cout << "Output Probability: " << output_prob[0] << std::endl;
+    std::cout << "Output: " << output[0] << std::endl;
+    std::cout << "Expected Output: " << 0 << std::endl;
+    std::cout << "----------------------" << std::endl;
+
+    input = {0, 1};
+    output_prob = neural_network.predict(input);
+    if (output_prob[0] > 0.5)
+    {
+        output = {1};
+    }
+    else
+    {
+        output = {0};
+    }
+    std::cout << "Input: " << input[0] << ", " << input[1] << std::endl;
+    std::cout << "Output Probability: " << output_prob[0] << std::endl;
+    std::cout << "Output: " << output[0] << std::endl;
+    std::cout << "Expected Output: " << 1 << std::endl;
+    std::cout << "----------------------" << std::endl;
+
+    input = {1, 0};
+    output_prob = neural_network.predict(input);
+    if (output_prob[0] > 0.5)
+    {
+        output = {1};
+    }
+    else
+    {
+        output = {0};
+    }
+    std::cout << "Input: " << input[0] << ", " << input[1] << std::endl;
+    std::cout << "Output Probability: " << output_prob[0] << std::endl;
+    std::cout << "Output: " << output[0] << std::endl;
+    std::cout << "Expected Output: " << 1 << std::endl;
+    std::cout << "----------------------" << std::endl;
+
+    input = {1, 1};
+    output_prob = neural_network.predict(input);
+    if (output_prob[0] > 0.5)
+    {
+        output = {1};
+    }
+    else
+    {
+        output = {0};
+    }
+    std::cout << "Input: " << input[0] << ", " << input[1] << std::endl;
+    std::cout << "Output Probability: " << output_prob[0] << std::endl;
+    std::cout << "Output: " << output[0] << std::endl;
+    std::cout << "Expected Output: " << 0 << std::endl;
+    std::cout << "----------------------" << std::endl;
+
+    return 0;
+}
+```
 
 ## License
 
