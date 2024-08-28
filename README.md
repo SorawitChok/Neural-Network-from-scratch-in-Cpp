@@ -218,7 +218,7 @@ Where:
 
 Now let's dive into the actual implementation of each module and function necessary for creating your own neural network.
 
-### Utility Function
+### Utility Function Implementation
 
 We will start with the important math operation and how we can implement it in C++. For these functions, you will need to import the following dependencies.
 
@@ -374,7 +374,7 @@ std::vector<double> biasInitailizer(int size)
 }
 ```
 
-### Activation Function
+### Activation Function Implementation
 
 Next, we will look into how we can implement each activation function that will allow our neural network perform a non-linear transformation on the input data. For more information and implementation of vectorize version of each activation function, you can consult [activation.cpp](./activation.cpp) file. For these activartion functions, you will need to import the following dependencies.
 
@@ -489,7 +489,7 @@ double tanhDerivative(double x)
 }
 ```
 
-### Layers
+### Layers Implementation
 
 Then we will move into the very core of constructing a neural network which is the layers. To implement these layer first we need to import the following dependencies.
 
@@ -694,7 +694,7 @@ public:
 };
 ```
 
-### Loss Function
+### Loss Function Implementation
 
 In this project, we implement two frequently used loss function, namely binary cross-entropy loss and mean-square error loss. To implement these loss functions you will need to import the following dependencies.
 
@@ -773,7 +773,7 @@ std::vector<double> MSELossDerivative(std::vector<double> true_label, std::vecto
 }
 ```
 
-### Neural Network
+### Neural Network Implementation
 
 Now, let's implement the most important part of this project, the neural network itself. There are five main method that we need to implement as follow:
 
