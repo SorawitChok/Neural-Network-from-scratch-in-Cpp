@@ -110,21 +110,35 @@ Well, first things first, when learning anything, one of the most essential part
 A loss function is a crucial component in a neural network that quantifies the difference between a model's predictions and the actual target values. It provides a numerical measure of how well the model is performing, guiding the optimization process by indicating how to adjust the model’s parameters to minimize errors. Essentially, the loss function acts as a feedback mechanism, helping to improve the accuracy of the model by minimizing the discrepancy between predicted and true outcomes. Some commonly used loss functions are:
 
 **Mean Squared Error (MSE)**
+Mean Squared Error (MSE) is a loss function widely used in machine learning and statistics. It measures the average squared difference between the predicted values and the actual values. A lower MSE indicates a better fit between the predicted values and the actual values. A higher MSE suggests a poorer fit.
 
 ```math
 MSE = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
 ```
 
+where:
+
+- $N$ is a total number of data points.
+- $y_i$ is an actual value for the i-th data point.
+- $ŷ_i$ is a predicted value for the i-th data point.
+
 **Binary Cross Entropy (BCE)**
+
+Binary Cross Entropy (BCE) is another loss function commonly used in machine learning, especially for binary classification problems. It measures the dissimilarity between the predicted probability distribution and the true value.
 
 ```math
 BCE = -\frac{1}{N} \sum_{i=1}^N y_i\cdot\ln(\hat{y}_i) + (1 - y_i)\cdot\ln(1 - \hat{y}_i)
 ```
 
+where:
+
+- $N$ is a total number of data points.
+- $y_i$ is an actual value for the i-th data point.
+- $ŷ_i$ is a predicted value (should be in the form of probability, passing from the activation function like Sigmoid) for the i-th data point.
+
 After we successfully define the goal, the next step is to look into the actual task of learning or optimizing the network toward the goal, and this will be the role of an important mathematical method called gradient descent.
 
 ### Gradient Descent
-
 
 ## Underlying Mathematics
 
