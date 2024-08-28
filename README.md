@@ -75,12 +75,15 @@ An activation function in a neural network introduces non-linearity, enabling th
 
 **Sigmoid Function**
 
-The sigmoid function is a mathematical function characterized by its s-shaped curve, which maps any real-valued input into a value between 0 and 1.
+The sigmoid function is a mathematical function with an S-shaped curve that transforms any real-valued input into a value between 0 and 1. This characteristic makes it particularly useful for applications requiring probabilities or binary classifications, as it compresses values into a range between 0 and 1.
+
 ```math
 \sigma(x)= \frac {1}{1+e^{-x}}
 ```
 
 **Rectified Linear Unit (ReLU)**
+
+The Rectified Linear Unit (ReLU) function is both simple and effective. It outputs the input value directly if the input is positive, and zero if the input is negative. This straightforward approach introduces non-linearity into neural networks, allowing them to model complex patterns while remaining computationally efficient. 
 
 ```math
 ReLU(x) = max(0,x) = \begin{cases}
@@ -90,6 +93,8 @@ ReLU(x) = max(0,x) = \begin{cases}
 ```
 
 **Hyperbolic Tangent Function (Tanh)**
+
+The tanh activation function, which stands for hyperbolic tangent, is a widely used non-linear function in neural networks. Like the sigmoid function, it features an S-shaped curve, but it maps input values to an output range of -1 to 1. This output range centers the data around zero, which can improve the performance and stability of the training process by ensuring more balanced gradients and faster convergence.
 
 ```math
 tanh(x) = \frac{(e^x − e^{-x})}{(e^x + e^{-x})}
