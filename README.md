@@ -172,6 +172,10 @@ y = a_o = \sigma(h_o) \\
 
 ### Backward Propagation
 
+<p align="center">
+  <img src="./Images/Backward_propagation_math.png" alt="Backward"/>
+</p>
+
 ## Breaking into Modules
 
 ### Linear layer
