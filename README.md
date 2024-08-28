@@ -20,7 +20,7 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
   - [Layers Implementation](#Layers-Implementation)
   - [Loss Function Implementation](#Loss-Function-Implementation)
   - [Neural Network Implementation](#Neural-Network-Implementation)
-- [Example: XOR operation prediction](#Example:-XOR-operation-prediction)
+- [Example: XOR operation prediction](#Example-XOR-operation-prediction)
 - [License](#License)
 - [Contributing](#Contributing)
 - [Author](#Author)
