@@ -938,7 +938,7 @@ public:
 
 ## Example: XOR operation prediction
 
-```cpp filename="main.cpp"
+```cpp
 #include <iostream>
 #include <vector>
 #include "NN.cpp"
