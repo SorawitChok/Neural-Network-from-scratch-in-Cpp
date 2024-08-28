@@ -9,9 +9,9 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
   - [Fully-connected layer](#Fully-connected-layer)
   - [Activation Function](#Activation-Function)
   - [Loss Function](#Loss-Function)
+  - [Gradient Descent](#Gradient-Descent)
 - [Underlying Mathematics](#Underlying-Mathematics)
   - [Forward Propagation](#Forward-Propagation)
-  - [Gradient Descent](#Gradient-Descent)
   - [Backward Propagation](#Backward-Propagation)
 - [Breaking into Modules](#Breaking-into-Modules)
 - [Implementation](#Implementation)
@@ -136,6 +136,10 @@ where:
 - $y_i$ is an actual value for the i-th data point.
 - $ŷ_i$ is a predicted value (should be in the form of probability, passing from the activation function like Sigmoid) for the i-th data point.
 
+After we successfully define the goal, the next step is to look into the actual task of learning or optimizing the network toward the goal, and this will be the role of an important mathematical method called gradient descent.
+
+### Gradient Descent
+
 ## Underlying Mathematics
 
 ### Forward Propagation
@@ -164,8 +168,6 @@ h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o \\
 y = a_o = \sigma(h_o) \\
 \end{aligned}
 ```
-
-### Gradient Descent
 
 ### Backward Propagation
 
