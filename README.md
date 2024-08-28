@@ -103,9 +103,10 @@ tanh(x) = \frac{(e^x − e^{-x})}{(e^x + e^{-x})}
 
 Now that we already laid some foundation of the neural network, from the fully-connected layer performing the affine transformation to the activation functions, which helps provide some nonlinearity, another question may arise: How can we obtain the optimal weight matrix and bias vector that will be used for an affine transformation? How can the neural network learn those values effectively?
 
-Well, first things first, when learning anything, one of the most essential parts is the goal or objective that one wants to achieve. In the case of neural networks, it is to make a prediction that is as close to the target value as possible. As the guiding light for the learning process of neural networks, what we need is the loss function.  
+Well, first things first, when learning anything, one of the most essential parts is the goal or objective that one wants to achieve. In the case of neural networks, it is to make a prediction that is as close to the target value as possible. As the guiding light for the learning process of neural networks, what we need is the loss function.
 
 ### Loss Functions
+
 A loss function is a crucial component in a neural network that quantifies the difference between a model's predictions and the actual target values. It provides a numerical measure of how well the model is performing, guiding the optimization process by indicating how to adjust the model’s parameters to minimize errors. Essentially, the loss function acts as a feedback mechanism, helping to improve the accuracy of the model by minimizing the discrepancy between predicted and true outcomes. Some commonly used loss functions are:
 
 **Mean Squared Error (MSE)**
@@ -937,6 +938,23 @@ public:
 ```
 
 ## Example: XOR operation prediction
+
+The XOR operation prediction problem is a classic example that highlights the power of machine learning algorithms, particularly neural networks. The key characteristic of the XOR problem is that it is not linearly separable, meaning that a single straight line cannot separate the data points into the correct classes. This challenge showcases the limitations of simple models like linear classifiers and the necessity of more complex models, such as neural networks, which can learn non-linear decision boundaries to accurately solve the problem.
+
+The following examples are all possible case from XOR problem. Supposed that $\oplus$ refer to a logical XOR operation.
+
+- Case 1
+  - Input: $x_1 = 0$, $x_2 = 0$
+  - Output: $x_1 \oplus x_2 = 0$
+- Case 2
+  - Input: $x_1 = 0$, $x_2 = 1$
+  - Output: $x_1 \oplus x_2 = 1$
+- Case 3
+  - Input: $x_1 = 1$, $x_2 = 0$
+  - Output: $x_1 \oplus x_2 = 1$
+- Case 4
+  - Input: $x_1 = 1$, $x_2 = 1$
+  - Output: $x_1 \oplus x_2 = 0$
 
 ```cpp
 #include <iostream>
