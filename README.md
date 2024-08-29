@@ -1089,11 +1089,42 @@ int main()
 
     return 0;
 }
+
+// Output example (100% accuracy)
+/*  Input: 0, 0
+    Output Probability: 4.68587e-5
+    Output: 0
+    Expected Output: 0
+    ----------------------
+    Input: 0, 1
+    Output Probability: 0.998833
+    Output: 1
+    Expected Output: 1
+    ----------------------
+    Input: 1, 0
+    Output Probability: 0.999439
+    Output: 1
+    Expected Output: 1
+    ----------------------
+    Input: 1, 1
+    Output Probability: 0.00265182
+    Output: 0
+    Expected Output: 0
+    ----------------------
+*/
 ```
 
 ## License
 
 This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Citation
+
+If you find our work helpful or use any part of this repository in your research, please consider citing this reopsitory:
+
+```
+
+```
 
 ## Contributing
 
