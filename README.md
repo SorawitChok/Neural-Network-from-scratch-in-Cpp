@@ -251,9 +251,12 @@ Here, suppose we have this network where E is a loss (error) calculated from a l
   <img src="./Images/Backward_propagation_math.png" alt="Backward"/>
 </p>
 
-To update the weight $w_{h_1x_1}$ we will first need to find the $\frac{\partial E}{\partial w_{h_1x_1}}$, which is a component in the gradient of the loss function
+To update the weight $w_{h_1x_1}$ we will first need to find the $\frac{\partial E}{\partial w_{h_1x_1}}$, which is a component in the gradient of the loss function, but for simplicity, we will calculate solely this value.
+The equation is as follows:
 
-
+```math
+\frac{\partial E}{\partial w_{h_1x_1}} = \frac{\partial E}{\partial a_o} \cdot \frac{\partial a_o}{\partial h_o} \cdot \frac{\partial h_o}{\partial a_1} \cdot \frac{\partial a_1}{\partial h_1} \cdot \frac{\partial h_1}{\partial w_{h_1x_1}}
+```
 
 ## Breaking into Modules
 
