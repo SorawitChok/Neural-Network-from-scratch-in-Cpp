@@ -176,6 +176,7 @@ The **slope of the ground beneath your feet** corresponds to the mathematical co
 
 Where:
 
+- $\nabla\mathcal{L}$ indicates the gradient of a loss function $\mathcal{L}$,
 - $\mathcal{L}$ represents the loss function,
 - $w_i$ is the $i^{th}$ weight,
 - $b_j$ is the $j^{th}$ bias
