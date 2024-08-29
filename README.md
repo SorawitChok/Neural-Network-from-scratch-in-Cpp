@@ -189,6 +189,11 @@ This process can be simplified into the following equation:
 ```math
 \theta = \theta - \eta\cdot\nabla\mathcal{L}(\theta)
 ```
+Where:
+
+- $\theta$ represents a vector of all parameters,
+- $\eta$ illustrates the learning rate (size of step),
+- $\nabla\mathcal{L}(\theta)$ is a gradient vector of a loss function $\mathcal{L}$ with respect to parameters $\theta$
 
 ## Underlying Mathematics
 
