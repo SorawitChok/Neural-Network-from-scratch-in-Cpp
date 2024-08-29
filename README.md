@@ -266,7 +266,7 @@ w_{h_1x_1} = w_{h_1x_1} - \eta\cdot\frac{\partial L}{\partial w_{h_1x_1}}
 
 ## Breaking into Modules
 
-### Linear layer
+### Linear layer (Fully-connected layer)
 
 Suppose, we have the following neural network linear(dense) layer taking in $i$ number of inputs and producing $j$ number of outputs.
 
