@@ -197,7 +197,7 @@ Where:
 - $\nabla\mathcal{L}(\theta)$ is a gradient vector of a loss function $\mathcal{L}$ with respect to parameters $\theta$
 
 
-You might also notice the negative sign in front of \( \eta \). This negative sign is crucial because it indicates that the parameter updates should move in the direction opposite to the gradient vector. In other words, while the gradient points in the direction of the steepest ascent, the negative sign ensures that we adjust the parameters to reduce the loss function, or in other words descending.
+You might also notice the negative sign in front of $\eta$. This negative sign is crucial because it indicates that the parameter updates should move in the direction opposite to the gradient vector. In other words, while the gradient points in the direction of the steepest ascent, the negative sign ensures that we adjust the parameters to reduce the loss function, or in other words descending.
 
 
 For each weight and bias, the equation would be:
