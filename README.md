@@ -203,6 +203,7 @@ w_i = w_i - \eta\cdot\nabla\frac{\partial L}{\partial w_i} \\
 b_j = b_j - \eta\cdot\nabla\frac{\partial L}{\partial b_j}
 \end{aligned}
 ```
+This process of updating the weights and biases continues iteratively until the loss function converges to a minimum value or stops decreasing significantly. This process is typically controlled by setting a maximum number of iterations or monitoring the loss function’s improvement.
 
 ## Underlying Mathematics
 
