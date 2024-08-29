@@ -251,11 +251,11 @@ Here, suppose we have this network where E is a loss (error) calculated from a l
   <img src="./Images/Backward_propagation_math.png" alt="Backward"/>
 </p>
 
-To update the weight $w_{h_1x_1}$ we will first need to find the $\frac{\partial E}{\partial w_{h_1x_1}}$, which is a component in the gradient of the loss function, but for simplicity, we will calculate solely this value.
+To update the weight $w_{h_1x_1}$ we will first need to find the $\frac{\partial L}{\partial w_{h_1x_1}}$, which is a component in the gradient of the loss function, but for simplicity, we will calculate solely this value.
 The equation is as follows:
 
 ```math
-\frac{\partial E}{\partial w_{h_1x_1}} = \frac{\partial E}{\partial a_o} \cdot \frac{\partial a_o}{\partial h_o} \cdot \frac{\partial h_o}{\partial a_1} \cdot \frac{\partial a_1}{\partial h_1} \cdot \frac{\partial h_1}{\partial w_{h_1x_1}}
+\frac{\partial L}{\partial w_{h_1x_1}} = \frac{\partial L}{\partial a_o} \cdot \frac{\partial a_o}{\partial h_o} \cdot \frac{\partial h_o}{\partial a_1} \cdot \frac{\partial a_1}{\partial h_1} \cdot \frac{\partial h_1}{\partial w_{h_1x_1}}
 ```
 
 ## Breaking into Modules
@@ -297,91 +297,91 @@ Where:
 - $\mathbf{y}_{j \times 1}$ is the output vector.
 
 ```math
-\frac {\partial E} {\partial W} = \begin{bmatrix} \frac{\partial E}{\partial w_{11}} & \frac{\partial E}{\partial w_{12}} & \dots &\frac{\partial E}{\partial w_{1i}} \\ \\  \frac{\partial E}{\partial w_{21}} & \frac{\partial E}{\partial w_{22}} & \dots &\frac{\partial E}{\partial w_{2i}}  \\ \\ \vdots & \vdots & \ddots & \vdots \\ \\ \frac{\partial E}{\partial w_{j1}} & \frac{\partial E}{\partial w_{j2}} & \dots &\frac{\partial E}{\partial w_{ji}}\end{bmatrix}
+\frac {\partial L} {\partial W} = \begin{bmatrix} \frac{\partial L}{\partial w_{11}} & \frac{\partial L}{\partial w_{12}} & \dots &\frac{\partial L}{\partial w_{1i}} \\ \\  \frac{\partial L}{\partial w_{21}} & \frac{\partial L}{\partial w_{22}} & \dots &\frac{\partial L}{\partial w_{2i}}  \\ \\ \vdots & \vdots & \ddots & \vdots \\ \\ \frac{\partial L}{\partial w_{j1}} & \frac{\partial L}{\partial w_{j2}} & \dots &\frac{\partial L}{\partial w_{ji}}\end{bmatrix}
 ```
 
-simple example $\frac{\partial E}{\partial w_{11}}$
+simple example $\frac{\partial L}{\partial w_{11}}$
 
 ```math
 \begin{aligned}
-\frac{\partial E}{\partial w_{11}} &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial w_{11}} + \frac{\partial E}{\partial y_2} \cdot \frac{\partial y_2}{\partial w_{11}} + \dots + \frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial w_{11}} \\ &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial w_{11}} + \frac{\partial E}{\partial y_2} \cdot 0 + \dots + \frac{\partial E}{\partial y_j} \cdot 0 \\ &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial w_{11}} \\ &= \frac{\partial E}{\partial y_1} \cdot x_1
+\frac{\partial L}{\partial w_{11}} &= \frac{\partial L}{\partial y_1} \cdot \frac{\partial y_1}{\partial w_{11}} + \frac{\partial L}{\partial y_2} \cdot \frac{\partial y_2}{\partial w_{11}} + \dots + \frac{\partial L}{\partial y_j} \cdot \frac{\partial y_j}{\partial w_{11}} \\ &= \frac{\partial L}{\partial y_1} \cdot \frac{\partial y_1}{\partial w_{11}} + \frac{\partial L}{\partial y_2} \cdot 0 + \dots + \frac{\partial L}{\partial y_j} \cdot 0 \\ &= \frac{\partial L}{\partial y_1} \cdot \frac{\partial y_1}{\partial w_{11}} \\ &= \frac{\partial L}{\partial y_1} \cdot x_1
 \end{aligned}
 ```
 
 Which can be generalize as:
 
 ```math
-\frac{\partial E}{\partial w_{ji}} = \frac{\partial E}{\partial y_{j}} \cdot x_i
+\frac{\partial L}{\partial w_{ji}} = \frac{\partial L}{\partial y_{j}} \cdot x_i
 ```
 
 Therefore,
 
 ```math
-\frac {\partial E} {\partial W} = \begin{bmatrix} \frac{\partial E}{\partial y_1} \cdot x_1 & \frac{\partial E}{\partial y_1} \cdot x_2 & \dots &\frac{\partial E}{\partial y_1} \cdot x_i \\ \\  \frac{\partial E}{\partial y_2} \cdot x_1 & \frac{\partial E}{\partial y_2} \cdot x_2 & \dots &\frac{\partial E}{\partial y_2} \cdot x_i  \\ \\ \vdots & \vdots & \ddots & \vdots \\ \\ \frac{\partial E}{\partial y_j} \cdot x_1 & \frac{\partial E}{\partial y_j} \cdot x_2 & \dots &\frac{\partial E}{\partial y_j} \cdot x_i \end{bmatrix}
+\frac {\partial L} {\partial W} = \begin{bmatrix} \frac{\partial L}{\partial y_1} \cdot x_1 & \frac{\partial L}{\partial y_1} \cdot x_2 & \dots &\frac{\partial L}{\partial y_1} \cdot x_i \\ \\  \frac{\partial L}{\partial y_2} \cdot x_1 & \frac{\partial L}{\partial y_2} \cdot x_2 & \dots &\frac{\partial L}{\partial y_2} \cdot x_i  \\ \\ \vdots & \vdots & \ddots & \vdots \\ \\ \frac{\partial L}{\partial y_j} \cdot x_1 & \frac{\partial L}{\partial y_j} \cdot x_2 & \dots &\frac{\partial L}{\partial y_j} \cdot x_i \end{bmatrix}
 ```
 
 or simply
 
 ```math
-\frac {\partial E} {\partial W} =\frac{\partial E}{\partial Y} X^T
+\frac {\partial L} {\partial W} =\frac{\partial L}{\partial Y} X^T
 ```
 
 Then for the bias we can do a very similar process
 
 ```math
-\frac{\partial E}{\partial B} = \begin{bmatrix} \frac{\partial E}{\partial b_1} \\ \\ \frac{\partial E}{\partial b_2} \\ \vdots \\  \frac{\partial E}{\partial b_j} \end{bmatrix}
+\frac{\partial L}{\partial B} = \begin{bmatrix} \frac{\partial L}{\partial b_1} \\ \\ \frac{\partial L}{\partial b_2} \\ \vdots \\  \frac{\partial L}{\partial b_j} \end{bmatrix}
 ```
 
-Take for example finding $\frac{\partial E}{\partial b_1}$
+Take for example finding $\frac{\partial L}{\partial b_1}$
 
 ```math
 \begin{aligned}
-\frac{\partial E}{\partial b_1} &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial b_1} + \frac{\partial E}{\partial y_2} \cdot \frac{\partial y_2}{\partial b_1} + \dots + \frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial b_1} \\ &= \frac{\partial E}{\partial y_1} \cdot 1 + \frac{\partial E}{\partial y_2} \cdot 0 + \dots + \frac{\partial E}{\partial y_j} \cdot 0 \\ &= \frac{\partial E}{\partial y_1}
+\frac{\partial L}{\partial b_1} &= \frac{\partial L}{\partial y_1} \cdot \frac{\partial y_1}{\partial b_1} + \frac{\partial L}{\partial y_2} \cdot \frac{\partial y_2}{\partial b_1} + \dots + \frac{\partial L}{\partial y_j} \cdot \frac{\partial y_j}{\partial b_1} \\ &= \frac{\partial L}{\partial y_1} \cdot 1 + \frac{\partial L}{\partial y_2} \cdot 0 + \dots + \frac{\partial L}{\partial y_j} \cdot 0 \\ &= \frac{\partial L}{\partial y_1}
 \end{aligned}
 ```
 
 This can be generalized as
 
 ```math
-\frac{\partial E}{\partial b_j} = \frac{\partial E}{\partial y_j}
+\frac{\partial L}{\partial b_j} = \frac{\partial L}{\partial y_j}
 ```
 
 Therefore,
 
 ```math
-\frac{\partial E}{\partial B} = \begin{bmatrix} \frac{\partial E}{\partial y_1} \\ \\ \frac{\partial E}{\partial y_2} \\ \vdots \\  \frac{\partial E}{\partial y_j} \end{bmatrix} = \frac{\partial E}{\partial Y}
+\frac{\partial L}{\partial B} = \begin{bmatrix} \frac{\partial L}{\partial y_1} \\ \\ \frac{\partial L}{\partial y_2} \\ \vdots \\  \frac{\partial L}{\partial y_j} \end{bmatrix} = \frac{\partial L}{\partial Y}
 ```
 
-Then how we can pass the error from the current layer to the previous layer. The answer is that we need to find $\frac{\partial E}{\partial X}$, which is the error with respect to input.
+Then how we can pass the error from the current layer to the previous layer. The answer is that we need to find $\frac{\partial L}{\partial X}$, which is the error with respect to input.
 
 ```math
-\frac{\partial E}{\partial X} = \begin{bmatrix} \frac{\partial E}{\partial x_1} \\ \\ \frac{\partial E}{\partial x_2} \\ \vdots \\ \frac{\partial E}{\partial x_i} \end{bmatrix}
+\frac{\partial L}{\partial X} = \begin{bmatrix} \frac{\partial L}{\partial x_1} \\ \\ \frac{\partial L}{\partial x_2} \\ \vdots \\ \frac{\partial L}{\partial x_i} \end{bmatrix}
 ```
 
-For example we can find $\frac{\partial E}{\partial x_1}$ as follow:
+For example we can find $\frac{\partial L}{\partial x_1}$ as follow:
 
 ```math
 \begin{aligned}
-\frac{\partial E}{\partial x_1} &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial x_1} + \frac{\partial E}{\partial y_2} \cdot \frac{\partial y_2}{\partial x_1} + \dots + \frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial x_1} \\ &= \frac{\partial E}{\partial y_1} \cdot w_{11} + \frac{\partial E}{\partial y_2} \cdot w_{21} + \dots + \frac{\partial E}{\partial y_j} \cdot w_{j1}
+\frac{\partial L}{\partial x_1} &= \frac{\partial L}{\partial y_1} \cdot \frac{\partial y_1}{\partial x_1} + \frac{\partial L}{\partial y_2} \cdot \frac{\partial y_2}{\partial x_1} + \dots + \frac{\partial L}{\partial y_j} \cdot \frac{\partial y_j}{\partial x_1} \\ &= \frac{\partial L}{\partial y_1} \cdot w_{11} + \frac{\partial L}{\partial y_2} \cdot w_{21} + \dots + \frac{\partial L}{\partial y_j} \cdot w_{j1}
 \end{aligned}
 ```
 
 which can be generalize as
 
 ```math
-\frac{\partial E}{\partial x_i} = \frac{\partial E}{\partial y_1} \cdot w_{1i} + \frac{\partial E}{\partial y_2} \cdot w_{2i} + \dots + \frac{\partial E}{\partial y_j} \cdot w_{ji}
+\frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial y_1} \cdot w_{1i} + \frac{\partial L}{\partial y_2} \cdot w_{2i} + \dots + \frac{\partial L}{\partial y_j} \cdot w_{ji}
 ```
 
 Therefore,
 
 ```math
-\frac{\partial E}{\partial X} = \begin{bmatrix} \frac{\partial E}{\partial y_1}w_{11} + \frac{\partial E}{\partial y_2}w_{21} + \dots + \frac{\partial E}{\partial y_j}w_{j1}\\ \\ \frac{\partial E}{\partial y_1}w_{12} + \frac{\partial E}{\partial y_2}w_{22} + \dots + \frac{\partial E}{\partial y_j}w_{j2} \\ \vdots \\ \frac{\partial E}{\partial y_1}w_{1i} + \frac{\partial E}{\partial y_2}w_{2i} + \dots + \frac{\partial E}{\partial y_j}w_{ji}  \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix}^T\begin{bmatrix} \frac{\partial E}{\partial y_1} \\ \\ \frac{\partial E}{\partial y_2} \\ \vdots \\  \frac{\partial E}{\partial y_j} \end{bmatrix}
+\frac{\partial L}{\partial X} = \begin{bmatrix} \frac{\partial L}{\partial y_1}w_{11} + \frac{\partial L}{\partial y_2}w_{21} + \dots + \frac{\partial L}{\partial y_j}w_{j1}\\ \\ \frac{\partial L}{\partial y_1}w_{12} + \frac{\partial L}{\partial y_2}w_{22} + \dots + \frac{\partial L}{\partial y_j}w_{j2} \\ \vdots \\ \frac{\partial L}{\partial y_1}w_{1i} + \frac{\partial L}{\partial y_2}w_{2i} + \dots + \frac{\partial L}{\partial y_j}w_{ji}  \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix}^T\begin{bmatrix} \frac{\partial L}{\partial y_1} \\ \\ \frac{\partial L}{\partial y_2} \\ \vdots \\  \frac{\partial L}{\partial y_j} \end{bmatrix}
 ```
 
 Simply put
 
 ```math
-\frac{\partial E}{\partial X} = W^T \frac{\partial E}{\partial Y}
+\frac{\partial L}{\partial X} = W^T \frac{\partial L}{\partial Y}
 ```
 
 ## Implementation
