@@ -159,6 +159,16 @@ You start your journey at a random location in the Parametric Space. You take a 
 
 Your journey in the Parametric Space illustrates the power of the Gradient Descent algorithm—a methodical, iterative approach to finding the optimal solution in a complex landscape, where the path is not always clear, but the goal remains the same, finding the most profound depth, in other words, global minimum which provide you the lowest loss.
 
+Now we will formalize this into a more concrete mathematical concept. First, let's extract some key components from this tale.
+
+Each location in the **parametric space** indicates a distinct combination of values for every weight and bias of a network.
+
+The **height of terrain** represents the loss value of a chosen loss function at that specific location (combination of parameters).
+
+The **slope of the ground beneath your feet** corresponds to the mathematical concept of gradient.
+
+Gradient 
+
 ## Underlying Mathematics
 
 ### Forward Propagation
