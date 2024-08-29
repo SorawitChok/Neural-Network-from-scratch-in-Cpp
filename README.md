@@ -195,6 +195,12 @@ Where:
 - $\eta$ illustrates the learning rate (size of step),
 - $\nabla\mathcal{L}(\theta)$ is a gradient vector of a loss function $\mathcal{L}$ with respect to parameters $\theta$
 
+Hence, for each weight and bias, the equation would be:
+
+```math
+w_i = w_i - \eta\cdot\nabla\frac{\partial }{}
+```
+
 ## Underlying Mathematics
 
 ### Forward Propagation
