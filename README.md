@@ -182,13 +182,14 @@ Where:
 
 Note that we normally simplify all the parameters (weights and biases) into a symbol $\theta$, thus sometimes we may write the loss function as $\mathcal{L}(\theta)$.
 
-Guided by this gradient we will try to traverse the parametric space in such a way as to minimize the loss. A simple way to achieve this is by always stepping in the opposite direction with the gradient, as it points towards the steepest increase in loss. By consistently stepping in the gradient's opposite direction, we avoid moving towards regions where the loss increases the most. While this approach helps us reduce the loss, it doesn’t guarantee the largest decrease in a single step. This is what we call **"Gradient descent"**. 
+Guided by this gradient we will try to traverse the parametric space in such a way as to minimize the loss. A simple way to achieve this is by always stepping in the opposite direction with the gradient, as it points towards the steepest increase in loss. By consistently stepping in the gradient's opposite direction, we avoid moving towards regions where the loss increases the most. While this approach helps us reduce the loss, it doesn’t guarantee the largest decrease in a single step. This is what we call **"Gradient descent"**.
 
 This process can be simplified into the following equation:
 
 ```math
 \theta = \theta - \eta\cdot\nabla\mathcal{L}(\theta)
 ```
+
 Where:
 
 - $\theta$ represents a vector of all parameters,
@@ -256,7 +257,7 @@ In matrix form:
 
 ```math
 \begin{aligned}
-\begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_j \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ \vdots \\ x_i \end{bmatrix} + \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ \vdots \\ b_j \end{bmatrix} \\
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_j \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ \vdots \\ x_i \end{bmatrix} + \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ \vdots \\ b_j \end{bmatrix} \\
 \mathbf{y}_{j \times 1} = W_{j \times i} x_{i \times 1} + b_{j \times 1}
 \end{aligned}
 ```
@@ -296,6 +297,64 @@ or simply
 
 ```math
 \frac {\partial E} {\partial W} =\frac{\partial E}{\partial Y} X^T
+```
+
+Then for the bias we can do a very similar process
+
+```math
+\frac{\partial E}{\partial B} = \begin{bmatrix} \frac{\partial E}{\partial b_1} \\ \\ \frac{\partial E}{\partial b_2} \\ \vdots \\  \frac{\partial E}{\partial b_j} \end{bmatrix}
+```
+
+Take for example finding $\frac{\partial E}{\partial b_1}$
+
+```math
+\begin{aligned}
+\frac{\partial E}{\partial b_1} &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial b_1} + \frac{\partial E}{\partial y_2} \cdot \frac{\partial y_2}{\partial b_1} + \dots + \frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial b_1} \\ &= \frac{\partial E}{\partial y_1} \cdot 1 + \frac{\partial E}{\partial y_2} \cdot 0 + \dots + \frac{\partial E}{\partial y_j} \cdot 0 \\ &= \frac{\partial E}{\partial y_1}
+\end{aligned}
+```
+
+This can be generalized as
+
+```math
+\frac{\partial E}{\partial b_j} = \frac{\partial E}{\partial y_j}
+```
+
+Therefore,
+
+```math
+\frac{\partial E}{\partial B} = \begin{bmatrix} \frac{\partial E}{\partial y_1} \\ \\ \frac{\partial E}{\partial y_2} \\ \vdots \\  \frac{\partial E}{\partial y_j} \end{bmatrix} = \frac{\partial E}{\partial Y}
+```
+
+Then how we can pass the error from the current layer to the previous layer. The answer is that we need to find $\frac{\partial E}{\partial X}$, which is the error with respect to input.
+
+```math
+\frac{\partial E}{\partial X} = \begin{bmatrix} \frac{\partial E}{\partial x_1} \\ \\ \frac{\partial E}{\partial x_2} \\ \vdots \\ \frac{\partial E}{\partial x_i} \end{bmatrix}
+```
+
+For example we can find $\frac{\partial E}{\partial x_1}$ as follow:
+
+```math
+\begin{aligned}
+\frac{\partial E}{\partial x_1} &= \frac{\partial E}{\partial y_1} \cdot \frac{\partial y_1}{\partial x_1} + \frac{\partial E}{\partial y_2} \cdot \frac{\partial y_2}{\partial x_1} + \dots + \frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial x_1} \\ &= \frac{\partial E}{\partial y_1} \cdot w_{11} + \frac{\partial E}{\partial y_2} \cdot w_{21} + \dots + \frac{\partial E}{\partial y_j} \cdot w_{j1}
+\end{aligned}
+```
+
+which can be generalize as
+
+```math
+\frac{\partial E}{\partial x_i} = \frac{\partial E}{\partial y_1} \cdot w_{1i} + \frac{\partial E}{\partial y_2} \cdot w_{2i} + \dots + \frac{\partial E}{\partial y_j} \cdot w_{ji}
+```
+
+Therefore,
+
+```math
+\frac{\partial E}{\partial X} = \begin{bmatrix} \frac{\partial E}{\partial y_1}w_{11} + \frac{\partial E}{\partial y_2}w_{21} + \dots + \frac{\partial E}{\partial y_j}w_{j1}\\ \\ \frac{\partial E}{\partial y_1}w_{12} + \frac{\partial E}{\partial y_2}w_{22} + \dots + \frac{\partial E}{\partial y_j}w_{j2} \\ \vdots \\ \frac{\partial E}{\partial y_1}w_{1i} + \frac{\partial E}{\partial y_2}w_{2i} + \dots + \frac{\partial E}{\partial y_j}w_{ji}  \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix}^T\begin{bmatrix} \frac{\partial E}{\partial y_1} \\ \\ \frac{\partial E}{\partial y_2} \\ \vdots \\  \frac{\partial E}{\partial y_j} \end{bmatrix}
+```
+
+Simply put
+
+```math
+\frac{\partial E}{\partial X} = W^T \frac{\partial E}{\partial Y}
 ```
 
 ## Implementation
