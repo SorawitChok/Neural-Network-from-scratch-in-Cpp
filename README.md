@@ -248,7 +248,7 @@ Backward propagation, or backpropagation, is the process used to train neural ne
 Here, suppose we have this network.
 
 <p align="center">
-  <img src="./Images/Backward_propagation_math.png" alt="Backward"/>
+  <img src="./Images/Backward_propagation_math_new.png" alt="Backward"/>
 </p>
 
 To update the weight $w_{h_1x_1}$ we will first need to find the $\frac{\partial L}{\partial w_{h_1x_1}}$, which is a component in the gradient of the loss function, but for simplicity, we will calculate solely this value.
