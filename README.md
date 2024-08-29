@@ -205,6 +205,7 @@ Let's see an example. Suppose we have the following neural network architecture:
 Then, we can write out the forward propagation computation of this network as mathematical equations as follows:
 
 ```math
+\begin{aligned}
 h_1 = w_{h_1x_1}x_1 + w_{h_1x_2}x_2 + b_1 \\
 h_2 = w_{h_2x_1}x_1 + w_{h_2x_2}x_2 + b_2 \\
 h_3 = w_{h_3x_1}x_1 + w_{h_3x_2}x_2 + b_3 \\
@@ -215,6 +216,7 @@ a_3 = \sigma(h_3) \\
 \\
 h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o \\
 y = a_o = \sigma(h_o) \\
+\end{aligned}
 ```
 
 ### Backward Propagation
@@ -248,8 +250,10 @@ y_j = w_{j1}x_1 + w_{j2}x_2 + w_{j3}x_3 + ... + w_{ji}x_i + b_j \\
 In matrix form:
 
 ```math
+\begin{aligned}
 \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_j \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ \vdots \\ x_i \end{bmatrix} + \begin{bmatrix} b_1 \\ b_2 \\ b_3 \\ \vdots \\ b_j \end{bmatrix} \\
 \mathbf{y}_{j \times 1} = W_{j \times i} x_{i \times 1} + b_{j \times 1}
+\end{aligned}
 ```
 
 Where:
