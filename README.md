@@ -10,7 +10,7 @@ Welcome to the **Neural Network from Scratch in C++** project! This repository f
   - [Activation Function](#Activation-Function)
   - [Loss Function](#Loss-Function)
   - [Gradient Descent](#Gradient-Descent)
-- [Underlying Mathematics](#Underlying-Mathematics)
+- [Main Function](#Main-Function)
   - [Forward Propagation](#Forward-Propagation)
   - [Backward Propagation](#Backward-Propagation)
 - [Breaking into Modules](#Breaking-into-Modules)
@@ -210,7 +210,7 @@ b_j = b_j - \eta\cdot\nabla\frac{\partial L}{\partial b_j}
 ```
 This process of updating the weights and biases continues iteratively until the loss function converges to a minimum value or stops decreasing significantly. This process is typically controlled by setting a maximum number of iterations or monitoring the loss function’s improvement.
 
-## Underlying Mathematics
+## Main Function
 
 ### Forward Propagation
 
