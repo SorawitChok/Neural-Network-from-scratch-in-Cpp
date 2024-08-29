@@ -258,6 +258,11 @@ The equation is as follows:
 \frac{\partial L}{\partial w_{h_1x_1}} = \frac{\partial L}{\partial a_o} \cdot \frac{\partial a_o}{\partial h_o} \cdot \frac{\partial h_o}{\partial a_1} \cdot \frac{\partial a_1}{\partial h_1} \cdot \frac{\partial h_1}{\partial w_{h_1x_1}}
 ```
 
+Then to update the weight, we can follow the formula described in gradient descent
+```math
+w_{h_1x_1} = w_{h_1x_1} - \eta\cdot\frac{\partial L}{\partial w_{h_1x_1}} \\
+```
+
 ## Breaking into Modules
 
 ### Linear layer
