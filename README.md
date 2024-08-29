@@ -243,6 +243,8 @@ y = a_o = \sigma(h_o) \\
 
 ### Backward Propagation
 
+Backward propagation, or backpropagation, is the process used to train neural networks by adjusting the weights of the connections between neurons. After forward propagation generates an output, backpropagation calculates the error by comparing the predicted output with the actual target. This error is then propagated back through the network, layer by layer, to update the weights and biases using a method called gradient descent. By minimizing the error, the network learns and improves its accuracy over time. The backpropagation process is essential for optimizing neural networks and ensuring they generalize well to new data.
+
 <p align="center">
   <img src="./Images/Backward_propagation_math.png" alt="Backward"/>
 </p>
