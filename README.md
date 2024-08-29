@@ -198,7 +198,10 @@ Where:
 Hence, for each weight and bias, the equation would be:
 
 ```math
-w_i = w_i - \eta\cdot\nabla\frac{\partial }{}
+\begin{aligned}
+w_i = w_i - \eta\cdot\nabla\frac{\partial L}{\partial w_i} \\
+b_j = b_j - \eta\cdot\nabla\frac{\partial L}{\partial b_j}
+\end{aligned}
 ```
 
 ## Underlying Mathematics
