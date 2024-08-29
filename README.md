@@ -211,6 +211,7 @@ b_j = b_j - \eta\cdot\nabla\frac{\partial L}{\partial b_j}
 This process of updating the weights and biases continues iteratively until the loss function converges to a minimum value or stops decreasing significantly. This process is typically controlled by setting a maximum number of iterations or monitoring the loss function’s improvement.
 
 ## Main Function
+After we understand all the vital and foundational concepts and components of neural networks, we will now move on to learning about their functionality. There are 2 predominant functions in neural network, the forward propagation and backward propagation.  
 
 ### Forward Propagation
 
