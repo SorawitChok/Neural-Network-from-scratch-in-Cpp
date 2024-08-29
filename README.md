@@ -205,8 +205,8 @@ For each weight and bias, the equation would be:
 
 ```math
 \begin{aligned}
-w_i = w_i - \eta\cdot\nabla\frac{\partial L}{\partial w_i} \\
-b_j = b_j - \eta\cdot\nabla\frac{\partial L}{\partial b_j}
+w_i = w_i - \eta\cdot\frac{\partial L}{\partial w_i} \\
+b_j = b_j - \eta\cdot\frac{\partial L}{\partial b_j}
 \end{aligned}
 ```
 This process of updating the weights and biases continues iteratively until the loss function converges to a minimum value or stops decreasing significantly. This process is typically controlled by setting a maximum number of iterations or monitoring the loss function’s improvement.
@@ -240,6 +240,7 @@ h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o \\
 y = a_o = \sigma(h_o) \\
 \end{aligned}
 ```
+Note that $\sigma$ in this context refers to an activation function, it can be any activation function, but let's assume it to be a sigmoid function for now so that we can further use this later on in the backward propagation section.
 
 ### Backward Propagation
 
@@ -258,9 +259,9 @@ The equation is as follows:
 \frac{\partial L}{\partial w_{h_1x_1}} = \frac{\partial L}{\partial a_o} \cdot \frac{\partial a_o}{\partial h_o} \cdot \frac{\partial h_o}{\partial a_1} \cdot \frac{\partial a_1}{\partial h_1} \cdot \frac{\partial h_1}{\partial w_{h_1x_1}}
 ```
 
-Then to update the weight, we can follow the formula described in gradient descent
+Then to update the weight, we can apply the formula described in the gradient descent section to calculate the new value of this weight $w_{h_1x_1}$.
 ```math
-w_{h_1x_1} = w_{h_1x_1} - \eta\cdot\frac{\partial L}{\partial w_{h_1x_1}} \\
+w_{h_1x_1} = w_{h_1x_1} - \eta\cdot\frac{\partial L}{\partial w_{h_1x_1}}
 ```
 
 ## Breaking into Modules
