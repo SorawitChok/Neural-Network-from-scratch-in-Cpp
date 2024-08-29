@@ -197,9 +197,7 @@ Where:
 - $\eta$ illustrates the learning rate (size of step),
 - $\nabla\mathcal{L}(\theta)$ is a gradient vector of a loss function $\mathcal{L}$ with respect to parameters $\theta$
 
-
 You might also notice the negative sign in front of $\eta$. This negative sign is crucial because it indicates that the parameter updates should move in the direction opposite to the gradient vector. In other words, while the gradient points in the direction of the steepest ascent, the negative sign ensures that we adjust the parameters to reduce the loss function, or in other words descending.
-
 
 For each weight and bias, the equation would be:
 
@@ -209,9 +207,11 @@ w_i = w_i - \eta\cdot\frac{\partial L}{\partial w_i} \\
 b_j = b_j - \eta\cdot\frac{\partial L}{\partial b_j}
 \end{aligned}
 ```
+
 This process of updating the weights and biases continues iteratively until the loss function converges to a minimum value or stops decreasing significantly. This process is typically controlled by setting a maximum number of iterations or monitoring the loss function’s improvement.
 
 ## Main Function
+
 Once we’ve covered the essential concepts and foundational components of neural networks, we can now delve into their functionality. There are 2 key processes in neural networks: forward propagation and backward propagation.
 
 ### Forward Propagation
@@ -275,7 +275,7 @@ Suppose, we have the following neural network linear(dense) layer taking in $i$ 
   <img src="./Images/NN_forward_ex.png" alt="NN"/>
 </p>
 
-Then for this particular layer, we can formalize it into a total of $j$ equations below.
+Then for this particular layer, we can formalize the forward propagation process into a total of $j$ equations below.
 
 ```math
 \begin{aligned}
@@ -303,11 +303,21 @@ Where:
 - $b_{j \times 1}$ is the bias vector,
 - $\mathbf{y}_{j \times 1}$ is the output vector.
 
+And with these equations we can implement the feed forward process for our linear layer simply and straithforwardly. Then how about the backpropagation process.
+
+As you may already notice, our linear layer have only two type of learnable parameter, the weights and bias. So this mean we just only need find the partial derivative of loss with respect to weights and bias right?
+
+Wrong! Since we are dealing with a single layer of neuron, what we also need is some value to tell the previous layer about the error as well. This can be easily achieve by calculating the partial derivative of loss with respect to input of the current layer, $\frac{\partial L}{\partial X}$. Note that the input X of the current layer is simply an output Y of the previous layer, so $\frac{\partial L}{\partial X}$ of the current layer can be use as $\frac{\partial L}{\partial Y}$ of the previous layer.
+
+**Derive partial derivative of loss with respect to weights**
+
+Next, let's try to derive the partial derivative of loss with respect to weights $\frac {\partial L} {\partial W}$ first. This value can be represent as the following matrix with $j$ rows and $i$ columns
+
 ```math
 \frac {\partial L} {\partial W} = \begin{bmatrix} \frac{\partial L}{\partial w_{11}} & \frac{\partial L}{\partial w_{12}} & \dots &\frac{\partial L}{\partial w_{1i}} \\ \\  \frac{\partial L}{\partial w_{21}} & \frac{\partial L}{\partial w_{22}} & \dots &\frac{\partial L}{\partial w_{2i}}  \\ \\ \vdots & \vdots & \ddots & \vdots \\ \\ \frac{\partial L}{\partial w_{j1}} & \frac{\partial L}{\partial w_{j2}} & \dots &\frac{\partial L}{\partial w_{ji}}\end{bmatrix}
 ```
 
-simple example $\frac{\partial L}{\partial w_{11}}$
+For convenient, let us examine this simple instance of deriving $\frac{\partial L}{\partial w_{11}}$ first.
 
 ```math
 \begin{aligned}
@@ -315,31 +325,35 @@ simple example $\frac{\partial L}{\partial w_{11}}$
 \end{aligned}
 ```
 
-Which can be generalize as:
+This can be generalize as follows:
 
 ```math
 \frac{\partial L}{\partial w_{ji}} = \frac{\partial L}{\partial y_{j}} \cdot x_i
 ```
 
-Therefore,
+Therefore, we can represent the same matrix $\frac {\partial L} {\partial W}$ as following instead:
 
 ```math
 \frac {\partial L} {\partial W} = \begin{bmatrix} \frac{\partial L}{\partial y_1} \cdot x_1 & \frac{\partial L}{\partial y_1} \cdot x_2 & \dots &\frac{\partial L}{\partial y_1} \cdot x_i \\ \\  \frac{\partial L}{\partial y_2} \cdot x_1 & \frac{\partial L}{\partial y_2} \cdot x_2 & \dots &\frac{\partial L}{\partial y_2} \cdot x_i  \\ \\ \vdots & \vdots & \ddots & \vdots \\ \\ \frac{\partial L}{\partial y_j} \cdot x_1 & \frac{\partial L}{\partial y_j} \cdot x_2 & \dots &\frac{\partial L}{\partial y_j} \cdot x_i \end{bmatrix}
 ```
 
-or simply
+We can further simplify this matrix as:
 
 ```math
 \frac {\partial L} {\partial W} =\frac{\partial L}{\partial Y} X^T
 ```
 
-Then for the bias we can do a very similar process
+As a result, the partial derivative of loss function with respect to the weights $\frac{\partial L}{\partial W}$ is simply just the the partial derivative of loss function with respect to output $\frac{\partial L}{\partial Y}$ times the transpose of the input vector $X^T$.
+
+**Derive partial derivative of loss with respect to bias**
+
+Then for the partial derivative of loss with respect to bias we can represent it using the following vector.
 
 ```math
 \frac{\partial L}{\partial B} = \begin{bmatrix} \frac{\partial L}{\partial b_1} \\ \\ \frac{\partial L}{\partial b_2} \\ \vdots \\  \frac{\partial L}{\partial b_j} \end{bmatrix}
 ```
 
-Take for example finding $\frac{\partial L}{\partial b_1}$
+Then to understand how we can derive each component it this vector, let consider this example of finding $\frac{\partial L}{\partial b_1}$.
 
 ```math
 \begin{aligned}
@@ -347,25 +361,27 @@ Take for example finding $\frac{\partial L}{\partial b_1}$
 \end{aligned}
 ```
 
-This can be generalized as
+This can be generalized as:
 
 ```math
 \frac{\partial L}{\partial b_j} = \frac{\partial L}{\partial y_j}
 ```
 
-Therefore,
+Therefore, the partial derivative of loss with respect to bias $\frac{\partial L}{\partial B}$ is directly equal to the partial derivative of loss with respect to output $\frac{\partial L}{\partial Y}$.
 
 ```math
 \frac{\partial L}{\partial B} = \begin{bmatrix} \frac{\partial L}{\partial y_1} \\ \\ \frac{\partial L}{\partial y_2} \\ \vdots \\  \frac{\partial L}{\partial y_j} \end{bmatrix} = \frac{\partial L}{\partial Y}
 ```
 
-Then how we can pass the error from the current layer to the previous layer. The answer is that we need to find $\frac{\partial L}{\partial X}$, which is the error with respect to input.
+**Derive partial derivative of loss with respect to input**
+
+The partial derivative of loss with respect to input $\frac{\partial L}{\partial X}$ can be represent as follows:
 
 ```math
 \frac{\partial L}{\partial X} = \begin{bmatrix} \frac{\partial L}{\partial x_1} \\ \\ \frac{\partial L}{\partial x_2} \\ \vdots \\ \frac{\partial L}{\partial x_i} \end{bmatrix}
 ```
 
-For example we can find $\frac{\partial L}{\partial x_1}$ as follow:
+Consider deriving $\frac{\partial L}{\partial x_1}$:
 
 ```math
 \begin{aligned}
@@ -373,7 +389,7 @@ For example we can find $\frac{\partial L}{\partial x_1}$ as follow:
 \end{aligned}
 ```
 
-which can be generalize as
+In generalized form, we can represent it like this:
 
 ```math
 \frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial y_1} \cdot w_{1i} + \frac{\partial L}{\partial y_2} \cdot w_{2i} + \dots + \frac{\partial L}{\partial y_j} \cdot w_{ji}
@@ -385,7 +401,7 @@ Therefore,
 \frac{\partial L}{\partial X} = \begin{bmatrix} \frac{\partial L}{\partial y_1}w_{11} + \frac{\partial L}{\partial y_2}w_{21} + \dots + \frac{\partial L}{\partial y_j}w_{j1}\\ \\ \frac{\partial L}{\partial y_1}w_{12} + \frac{\partial L}{\partial y_2}w_{22} + \dots + \frac{\partial L}{\partial y_j}w_{j2} \\ \vdots \\ \frac{\partial L}{\partial y_1}w_{1i} + \frac{\partial L}{\partial y_2}w_{2i} + \dots + \frac{\partial L}{\partial y_j}w_{ji}  \end{bmatrix} = \begin{bmatrix} w_{11} & w_{12} & w_{13} & ...  & w_{1i} \\ w_{21} & w_{22} & w_{23} & ... & w_{2i} \\ w_{31} & w_{32} & w_{33} & ... & w_{3i} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ w_{j1} & w_{j2} & w_{j3} & ... & w_{ji} \end{bmatrix}^T\begin{bmatrix} \frac{\partial L}{\partial y_1} \\ \\ \frac{\partial L}{\partial y_2} \\ \vdots \\  \frac{\partial L}{\partial y_j} \end{bmatrix}
 ```
 
-Simply put
+In simple form, the partial derivative of loss with respect to input $\frac{\partial L}{\partial X}$ can be compute by the transpose of the weights matrix multiply with the partial derivative of loss with respect to input $\frac{\partial L}{\partial Y}$.
 
 ```math
 \frac{\partial L}{\partial X} = W^T \frac{\partial L}{\partial Y}
