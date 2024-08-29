@@ -240,7 +240,7 @@ h_o = w_{oa_1}a_1 + w_{oa_2}a_2 + w_{oa_3}a_3 +  b_o \\
 y = a_o = \sigma(h_o) \\
 \end{aligned}
 ```
-Note that $\sigma$ in this context refers to an activation function, it can be any activation function, but let's assume it to be a sigmoid function for now so that we can further use this later on in the backward propagation section.
+Note that $\sigma$ in this context refers to any activation function.
 
 ### Backward Propagation
 
