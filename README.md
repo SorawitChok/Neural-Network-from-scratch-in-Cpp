@@ -265,7 +265,7 @@ w_{h_1x_1} = w_{h_1x_1} - \eta\cdot\frac{\partial L}{\partial w_{h_1x_1}}
 ```
 
 ## Breaking into Modules
-Now that we have outlined the concept, components, and functioning of neural networks, though with all that information it is enough for you to write your hard-coded neural network from scratch, it can only cope with a neural network with a particular structure. You will not be able to add more neurons or layers to your network without rewriting the whole calculation process, in other words, you cannot dynamically modify your network structure. Well, what is the solution to that? How can you make neural networks that you can dynamically alter their structure? The resolution is to break down neural networks into different type of layer.
+Now that we have outlined the concept, components, and functioning of neural networks, though with all that information, it is enough for you to write your hard-coded neural network from scratch, it can only cope with a neural network with a particular structure. You will not be able to add more neurons or layers to your network without rewriting the whole calculation process, in other words, you cannot dynamically modify your network structure. Well, what is the solution to that? How can you make neural networks that you can dynamically alter their structure? The resolution is to break down neural networks into different types of layers.
 
 ### Linear layer (Fully-connected layer)
 
