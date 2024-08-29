@@ -167,7 +167,11 @@ The **height of terrain** represents the loss value of a chosen loss function at
 
 The **slope of the ground beneath your feet** corresponds to the mathematical concept of gradient.
 
-Gradient 
+**Gradient** is the partial derivative of the loss function with respect to the weights and biases in the network. Mathematically, we can write it as follows:
+
+```math
+\nabla \mathcal{L}(w_1, w_2, ..., w_i, b1_, b_2, ..., b_j) = \begin{bmatrix} \frac{\partial f}{\partial w_1} \\ \frac{\partial f}{\partial w_2} \\ \vdots \\ \frac{\partial f}{\partial w_i} \\ \frac{\partial f}{\partial b_1} \\ \frac{\partial f}{\partial b_2} \\ \vdots \\ \frac{\partial f}{\partial b_j} \end{bmatrix}
+```
 
 ## Underlying Mathematics
 
