@@ -179,7 +179,7 @@ Where:
 - $w_i$ is the $i^{th}$ weight,
 - $b_j$ is the $j^{th}$ bias
 
-Guided by this gradient we will try to traverse the parametric space in such a way as to minimize the loss. A simple way to achieve this is by always stepping in the opposite direction with the gradient, as it points towards the steepest increase in loss. By consistently stepping in the gradient's opposite direction, we avoid moving towards regions where the loss increases the most. While this approach helps us reduce the loss, it doesn’t guarantee the largest decrease in a single step. is this statement true
+Guided by this gradient we will try to traverse the parametric space in such a way as to minimize the loss. A simple way to achieve this is by always stepping in the opposite direction with the gradient, as it points towards the steepest increase in loss. By consistently stepping in the gradient's opposite direction, we avoid moving towards regions where the loss increases the most. While this approach helps us reduce the loss, it doesn’t guarantee the largest decrease in a single step. This is what we call **"Gradient descent"**. 
 
 ## Underlying Mathematics
 
