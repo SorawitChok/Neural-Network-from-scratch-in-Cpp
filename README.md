@@ -187,7 +187,7 @@ Guided by this gradient we will try to traverse the parametric space in such a w
 This process can be simplified into the following equation:
 
 ```math
-\theta = \theta - \eta\cdot\nabla\mathcal{L}
+\theta = \theta - \eta\cdot\nabla\mathcal{L}(\theta)
 ```
 
 ## Underlying Mathematics
