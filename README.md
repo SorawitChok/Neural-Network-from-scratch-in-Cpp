@@ -1407,7 +1407,7 @@ If you find our work helpful or use any part of this repository in your research
   author       = {Sorawit Chokphantavee and
                   Sirawit Chokphantavee},
   title        = {{SorawitChok/Neural-Network-from-scratch-in-Cpp: 
-                   Neural Network from-scratch in C++}},
+                   Neural Network from scratch in C++}},
   month        = aug,
   year         = 2024,
   publisher    = {Zenodo},
