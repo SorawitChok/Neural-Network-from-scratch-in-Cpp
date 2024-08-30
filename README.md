@@ -100,6 +100,18 @@ ReLU(x) = max(0,x) = \begin{cases}
 \end{cases}
 ```
 
+**Leaky Rectified Linear Unit (Leaky ReLU)**
+
+Leaky ReLU (Rectified Linear Unit) is a variant of the ReLU activation function used in neural networks. While standard ReLU outputs zero for any negative input, leaky ReLU allows a small, non-zero gradient for negative inputs. This small slope, usually a small constant like 0.01, helps to prevent the "dying ReLU" problem where neurons can get stuck during training with zero output.
+
+```math
+LeakyReLU(x) = max(\alpha x,x) = \begin{cases}
+        x,&  \text{if } x > 0\\
+        \alpha x,&   \text{otherwise} 
+\end{cases} \quad ; \alpha \text{ is very small real number i.e. 0.01 }
+```
+
+
 **Hyperbolic Tangent Function (Tanh)**
 
 The tanh activation function, which stands for hyperbolic tangent, is a widely used non-linear function in neural networks. Like the sigmoid function, it features an S-shaped curve, but it maps input values to an output range of -1 to 1. This output range centers the data around zero, which can improve the performance and stability of the training process by ensuring more balanced gradients and faster convergence.
@@ -407,6 +419,98 @@ In simple form, the partial derivative of loss with respect to input $\frac{\par
 \frac{\partial L}{\partial X} = W^T \frac{\partial L}{\partial Y}
 ```
 
+### Activation layer
+
+Then what aboutthe activation layer? Luckily, since the activation layer does not have any learnable parameter, the solely thing we need to concern is how it can backpropagate the error through the layer. This can easily done through the use of the derivative of each activation function.
+
+**Derivative of the Sigmoid function**
+
+```math
+\begin{aligned}
+\sigma'(x) &= \frac{d}{dx}(\frac{1}{1+e^{-x}}) \\
+&= \frac{d}{dx}(1+e^{-x})^{-1} \\
+&= -(1+e^{-x})^{-2} (-e^{-x}) \\
+&= \frac{e^{-x}}{(1+e^{-x})^2} \times \frac{e^{2x}}{e^{2x}} \\
+&= \frac{e^x}{(1+e^{-x}) e^x (1+e^{-x}) e^x} \\
+&= \frac{e^x}{(e^x+1) (e^x+1)} \\
+&= \frac{e^{x}}{(1+e^{x})^2}
+\end{aligned}
+```
+
+However, in fact, this derivative of Sigmoid function can further simplfied to:
+
+```math
+\sigma'(x) = \sigma(x) (1-\sigma(x))
+```
+
+But for our case, we decided to use the first derivation to implement our neural network.
+
+**Derivative of the ReLU function**
+
+```math
+ReLU'(x) = \begin{cases}
+        1,&  \text{if } x \geq 0\\
+        0,&   \text{otherwise}
+\end{cases}
+```
+
+**Derivative of the Leaky ReLU function**
+
+```math
+LeakyReLU'(x) = \begin{cases}
+        1,&  \text{if } x \geq 0\\
+        \alpha,&   \text{otherwise}
+\end{cases}
+```
+
+**Derivative of the Tanh function**
+
+```math
+\begin{aligned}
+tanh'(x) &= \frac{d}{dx} \frac{(e^x − e^{-x})}{(e^x + e^{-x})}\\
+&=  \frac{(e^x + e^{-x}) \frac{d}{dx}(e^x − e^{-x}) - (e^x − e^{-x})\frac{d}{dx}(e^x + e^{-x})}{(e^x + e^{-x})^2} \\
+&= \frac{(e^x + e^{-x}) (e^x + e^{-x}) - (e^x − e^{-x})(e^x - e^{-x})}{(e^x + e^{-x})^2} \\
+&= \frac{(e^x + e^{-x})^2}{(e^x + e^{-x})^2} - \frac{(e^x − e^{-x})^2}{(e^x + e^{-x})^2} \\
+&= 1 - tanh^2(x)
+\end{aligned}
+```
+
+### Loss function derivative
+
+For the loss function, we also need the derivative of each loss function to pass the error back to each layer during the back propagation process as well. So, let explore how we can derive the derivative of each loss function together.
+
+**Derivative of the MSE loss function**
+
+```math
+MSE = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
+```
+For each data sample, it is:
+```math
+\begin{aligned}
+MSE' &= \frac{\partial}{\partial\hat{y}_i} (y_i - \hat{y}_i)^2 \\
+&= 2 (y_i - \hat{y}_i) \frac{\partial}{\partial\hat{y}_i} (y_i - \hat{y}_i) \\
+&= 2 (y_i - \hat{y}_i) (\frac{\partial}{\partial\hat{y}_i}y_i - \frac{\partial}{\partial\hat{y}_i}\hat{y}_i) \\
+&= 2 (y_i - \hat{y}_i) (0 - 1) \\
+&= 2 (\hat{y}_i - y_i)
+\end{aligned}
+```
+
+**Derivative of the BCE loss function**
+```math
+BCE = -\frac{1}{N} \sum_{i=1}^N y_i\cdot\ln(\hat{y}_i) + (1 - y_i)\cdot\ln(1 - \hat{y}_i)
+```
+For each data sample, it is:
+```math
+\begin{aligned}
+BCE' &= \frac{\partial}{\partial\hat{y}_i} y_i\cdot\ln(\hat{y}_i) + (1 - y_i)\cdot\ln(1 - \hat{y}_i) \\
+&= \frac{\partial}{\partial\hat{y}_i} y_i\cdot\ln(\hat{y}_i) + \frac{\partial}{\partial\hat{y}_i}(1 - y_i)\cdot\ln(1 - \hat{y}_i) \\
+&= y_i\frac{\partial}{\partial\hat{y}_i}\ln(\hat{y}_i) + \ln(\hat{y}_i)\frac{\partial}{\partial\hat{y}_i}y_i + (1 - y_i)\frac{\partial}{\partial\hat{y}_i}\ln(1 - \hat{y}_i) + \ln(1 - \hat{y}_i)\frac{\partial}{\partial\hat{y}_i}(1 - y_i) \\
+&= \frac{y_i}{\hat{y}_i} + 0 + \frac{1 - y_i}{1 - \hat{y}_i}\frac{\partial}{\partial\hat{y}_i}(1 - \hat{y}_i) + \ln(1 - \hat{y}_i)\frac{\partial}{\partial\hat{y}_i}(1 - y_i) \\
+&= \frac{y_i}{\hat{y}_i} +  \frac{1 - y_i}{1 - \hat{y}_i}(0 - 1) + \ln(1 - \hat{y}_i)(0 - 0) \\
+&= \frac{y_i}{\hat{y}_i} + \frac{y_i - 1}{1 - \hat{y}_i}\\
+&= \frac{y_i - \hat{y}_i}{\hat{y}_i(1 - \hat{y}_i)}
+\end{aligned}
+```
 ## Implementation
 
 Now let's dive into the actual implementation of each module and function necessary for creating your own neural network.
