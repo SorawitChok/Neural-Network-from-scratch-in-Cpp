@@ -1403,7 +1403,18 @@ This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for
 If you find our work helpful or use any part of this repository in your research, please consider citing this reopsitory:
 
 ```
-
+@software{sorawit_chokphantavee_2024_13584269,
+  author       = {Sorawit Chokphantavee and
+                  Sirawit Chokphantavee},
+  title        = {{SorawitChok/Neural-Network-from-scratch-in-Cpp: 
+                   Neural Network from-scratch in C++}},
+  month        = aug,
+  year         = 2024,
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.13584269},
+  url          = {https://doi.org/10.5281/zenodo.13584269}
+}
 ```
 
 ## Contributing
