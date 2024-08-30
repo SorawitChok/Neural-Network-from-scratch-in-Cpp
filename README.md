@@ -477,7 +477,7 @@ tanh'(x) &= \frac{d}{dx} \frac{(e^x − e^{-x})}{(e^x + e^{-x})}\\
 
 ### Loss function derivative
 
-For the loss function, we also need the derivative of each loss function to pass the error back to each layer during the back propagation process as well. So, let explore how we can derive the derivative of each loss function together.
+For the loss function, we also need the derivative of each loss function to pass the error back to the previous layer during the backpropagation process as well. So, let's explore how we can derive the derivative of each loss function together.
 
 **Derivative of the MSE loss function**
 
