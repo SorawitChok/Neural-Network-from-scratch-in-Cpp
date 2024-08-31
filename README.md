@@ -1400,7 +1400,7 @@ This code is licensed under the MIT License. See the [LICENSE](LICENSE) file for
 
 ## Citation
 
-If you find our work helpful or use any part of this repository in your research, please consider citing this reopsitory:
+If you find our work helpful or use any part of this repository in your research, please consider citing this repository:
 
 ```
 @software{sorawit_chokphantavee_2024_13584269,
